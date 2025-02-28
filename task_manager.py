@@ -54,18 +54,23 @@ class Menu:
             '1': "Добавить задачу",
             '2': "Показать список задач",
             '3': "Изменить статус задачи",
-            '4': "Выйти"
+            '4': "Удалить задачу",
+            '5': "Выйти"
         }
 
     def show_actions(self):
         for (key,value) in self.actions.items():
             print(f"{key}. {value}")
 
-    def identify_status(self,choice):
+    def identify_status(self):
+        print("Статус (1 - выполнено, 2 - не выполнено, любая клавиша - свой статус)")
+        choice = input("Статус: ")
         if choice == "1":
             status = "Выполнено"
-        else:
+        elif choice == "2":
             status = "Не выполнено"
+        else:
+            status = input(">> Введите личный статус: ")
         return status
 
 
@@ -78,9 +83,7 @@ class Menu:
                 title = input("Заголовок задачи: ")
                 description = input("Описание задачи: ")
 
-                print("Статус (1 - выполнено, любая клавиша - не выполнено)")
-                status_choice = input("Статус: ")
-                status = self.identify_status(status_choice)
+                status = self.identify_status()
 
                 date = input("Дата добавления: ")
                 deadline = input("Дедлайн: ")
@@ -92,9 +95,19 @@ class Menu:
             elif action == '2':
                 self.task_manager.show_tasks()
 
+            elif action == '3':
+                print("Статус какой задачи вы желаете изменить?")
+                for index, self.task in enumerate(self.task_manager.tasks, start = 1):
+                    print(f"{self.task.title} - {index}")
+                status_change_choice = int(input(">> "))
+
+                if status_change_choice <= len(self.task_manager.tasks):
+                    self.task_manager.tasks[status_change_choice - 1].status =  self.identify_status()
+                else:
+                    print("Нет задачи с таким номером")
 
 
-            elif action == '4':
+            elif action == '5':
                 print("Выход...")
                 return False
         else:
