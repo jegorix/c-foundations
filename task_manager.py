@@ -7,6 +7,11 @@ class TaskManager:
     def add_task(self, task):
         self.tasks.append(task)
 
+    def make_sep(self):
+        for _ in range(256):
+            print("_", end = "")
+        print()
+
     # def remove_task(self, task):
     #     self.tasks.remove(task)
 
@@ -15,6 +20,7 @@ class TaskManager:
             print("Список задач пуст")
 
         for index, task in enumerate(self.tasks, start=1):
+            self.make_sep()
             print(f"Задача:{index}",
                   f"Заголовок:{task.title}",
                   f"Описание задачи:{task.description}",
@@ -23,6 +29,7 @@ class TaskManager:
                   f"Дедлайн: {task.deadline}",
                   sep = "\n"
                   )
+            self.make_sep()
 
 
 
@@ -77,8 +84,6 @@ class Menu:
             print("Неизвестная команда. Попробуйте снова.")
 
         return True
-
-
 
 
 
