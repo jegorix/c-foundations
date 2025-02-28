@@ -78,9 +78,9 @@ class Menu:
         print("Дата добавления(1 - текущая дата, любая клавиша - своя дата): ")
         date_choice = input(">> ")
         if date_choice == "1":
-            date = datetime.now().date()
+            date = f"{datetime.now().date()} (Время: {datetime.now().strftime("%H:%M")})"
         else:
-            date = input(">>")
+            date = input(">> ")
         return date
 
 
