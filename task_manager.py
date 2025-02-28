@@ -2,7 +2,7 @@ from asyncio import tasks
 
 from jinja2.runtime import identity
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class TaskManager:
     def __init__(self):
@@ -83,6 +83,21 @@ class Menu:
             date = input(">> ")
         return date
 
+    def set_deadline(self, added_date):
+        print("Дедлайн(1-дата пользователя, любая клавиша - смещения от даты добавления)")
+        show_date_choice = input(">> ")
+        if show_date_choice == "1":
+            date = input("Введите дату: ")
+        else:
+            print("Сколько дней вы даете на выполнение задачи?")
+            user_input_days = int(input(">> "))
+            data_obj = datetime.strptime(added_date, "%Y-%m-%d (Время: %H:%M)")
+            new_date_obj = data_obj + timedelta(days=user_input_days)
+            date = f"{new_date_obj.date()} (Время: {new_date_obj.strftime("%H:%M")})"
+
+        return date
+
+
 
     def get_task_titles(self):
         for index, self.task in enumerate(self.task_manager.tasks, start=1):
@@ -101,7 +116,7 @@ class Menu:
 
                 date = self.identify_date()
 
-                deadline = input("Дедлайн: ")
+                deadline = self.set_deadline(date)
 
                 new_task = Task(title, description, status, date, deadline)
                 self.task_manager.add_task(new_task)
@@ -156,6 +171,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-# игра со временем
