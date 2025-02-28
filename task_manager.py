@@ -73,6 +73,9 @@ class Menu:
             status = input(">> Введите личный статус: ")
         return status
 
+    def get_task_titles(self):
+        for index, self.task in enumerate(self.task_manager.tasks, start=1):
+            print(f"{self.task.title} - {index}")
 
 
     def choice(self, action):
@@ -97,12 +100,20 @@ class Menu:
 
             elif action == '3':
                 print("Статус какой задачи вы желаете изменить?")
-                for index, self.task in enumerate(self.task_manager.tasks, start = 1):
-                    print(f"{self.task.title} - {index}")
+                self.get_task_titles()
                 status_change_choice = int(input(">> "))
 
                 if status_change_choice <= len(self.task_manager.tasks):
                     self.task_manager.tasks[status_change_choice - 1].status =  self.identify_status()
+                else:
+                    print("Нет задачи с таким номером")
+
+            elif action == '4':
+                self.get_task_titles()
+                print("Какую задачу вы хотите удалить?")
+                task_to_delete = input(">> ")
+                if int(task_to_delete) <= len(self.task_manager.tasks):
+                    self.task_manager.tasks.pop(int(task_to_delete)-1)
                 else:
                     print("Нет задачи с таким номером")
 
