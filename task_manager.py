@@ -1,5 +1,8 @@
 from asyncio import tasks
 
+from jinja2.runtime import identity
+
+
 class TaskManager:
     def __init__(self):
         self.tasks = []
@@ -21,10 +24,10 @@ class TaskManager:
 
         for index, task in enumerate(self.tasks, start=1):
             self.make_sep()
-            print(f"Задача:{index}",
-                  f"Заголовок:{task.title}",
-                  f"Описание задачи:{task.description}",
-                  f"Статус:{task.status}",
+            print(f"Задача: {index}",
+                  f"Заголовок: {task.title}",
+                  f"Описание задачи: {task.description}",
+                  f"Статус: {task.status}",
                   f"Дата добавления: {task.date}",
                   f"Дедлайн: {task.deadline}",
                   sep = "\n"
@@ -50,12 +53,22 @@ class Menu:
         self.actions = {
             '1': "Добавить задачу",
             '2': "Показать список задач",
-            '3': "Выйти"
+            '3': "Изменить статус задачи",
+            '4': "Выйти"
         }
 
     def show_actions(self):
         for (key,value) in self.actions.items():
             print(f"{key}. {value}")
+
+    def identify_status(self,choice):
+        if choice == "1":
+            status = "Выполнено"
+        else:
+            status = "Не выполнено"
+        return status
+
+
 
     def choice(self, action):
         if action in self.actions:
@@ -64,7 +77,11 @@ class Menu:
             if action == '1':
                 title = input("Заголовок задачи: ")
                 description = input("Описание задачи: ")
-                status = input("Статус: ")
+
+                print("Статус (1 - выполнено, любая клавиша - не выполнено)")
+                status_choice = input("Статус: ")
+                status = self.identify_status(status_choice)
+
                 date = input("Дата добавления: ")
                 deadline = input("Дедлайн: ")
 
@@ -77,7 +94,7 @@ class Menu:
 
 
 
-            elif action == '3':
+            elif action == '4':
                 print("Выход...")
                 return False
         else:
