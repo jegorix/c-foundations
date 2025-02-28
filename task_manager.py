@@ -2,6 +2,7 @@ from asyncio import tasks
 
 from jinja2.runtime import identity
 
+from datetime import datetime
 
 class TaskManager:
     def __init__(self):
@@ -73,6 +74,16 @@ class Menu:
             status = input(">> Введите личный статус: ")
         return status
 
+    def identify_date(self):
+        print("Дата добавления(1 - текущая дата, любая клавиша - своя дата): ")
+        date_choice = input(">> ")
+        if date_choice == "1":
+            date = datetime.now().date()
+        else:
+            date = input(">>")
+        return date
+
+
     def get_task_titles(self):
         for index, self.task in enumerate(self.task_manager.tasks, start=1):
             print(f"{self.task.title} - {index}")
@@ -88,7 +99,8 @@ class Menu:
 
                 status = self.identify_status()
 
-                date = input("Дата добавления: ")
+                date = self.identify_date()
+
                 deadline = input("Дедлайн: ")
 
                 new_task = Task(title, description, status, date, deadline)
@@ -142,3 +154,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# игра со временем
