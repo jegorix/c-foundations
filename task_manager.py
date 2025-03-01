@@ -132,7 +132,12 @@ class Menu:
             elif action == '3':
                 print("Статус какой задачи вы желаете изменить?")
                 self.get_task_titles()
-                status_change_choice = int(input(">> "))
+                while True:
+                    try:
+                        status_change_choice = int(input(">> "))
+                        break
+                    except ValueError:
+                        print("Введите корректный номер статуса")
 
                 if status_change_choice <= len(self.task_manager.tasks):
                     self.task_manager.tasks[status_change_choice - 1].status =  self.identify_status()
@@ -143,10 +148,16 @@ class Menu:
             elif action == '4':
                 self.get_task_titles()
                 print("Какую задачу вы хотите удалить?")
-                task_to_delete = input(">> ")
-                if int(task_to_delete) <= len(self.task_manager.tasks):
-                    print(f"Задача '{self.task_manager.tasks[int(task_to_delete) - 1].title}' успешно удалена")
-                    self.task_manager.tasks.pop(int(task_to_delete)-1)
+                while True:
+                    try:
+                        task_to_delete = int(input(">> "))
+                        break
+                    except ValueError:
+                        print("Введите корректный номер задачи")
+
+                if task_to_delete <= len(self.task_manager.tasks):
+                    print(f"Задача '{self.task_manager.tasks[task_to_delete - 1].title}' успешно удалена")
+                    self.task_manager.tasks.pop(task_to_delete-1)
                 else:
                     print("Нет задачи с таким номером")
 
