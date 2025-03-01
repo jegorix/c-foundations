@@ -16,9 +16,6 @@ class TaskManager:
             print("_", end = "")
         print()
 
-    # def remove_task(self, task):
-    #     self.tasks.remove(task)
-
     def show_tasks(self):
         if not self.tasks:
             print("Список задач пуст")
