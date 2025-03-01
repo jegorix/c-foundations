@@ -84,18 +84,25 @@ class Menu:
         return date
 
     def set_deadline(self, added_date):
-        print("Дедлайн(1-дата пользователя, любая клавиша - смещения от даты добавления)")
-        show_date_choice = input(">> ")
-        if show_date_choice == "1":
-            date = input("Введите дату: ")
-        else:
-            print("Сколько дней вы даете на выполнение задачи?")
-            user_input_days = int(input(">> "))
-            data_obj = datetime.strptime(added_date, "%Y-%m-%d (Время: %H:%M)")
-            new_date_obj = data_obj + timedelta(days=user_input_days)
-            date = f"{new_date_obj.date()} (Время: {new_date_obj.strftime("%H:%M")})"
+        while True:
+            print("Дедлайн(1-дата пользователя, любая клавиша - смещения от даты добавления)")
+            show_date_choice = input(">> ")
+            if show_date_choice == "1":
+                date = input("Введите дату: ")
+                return date
 
-        return date
+            else:
+                print("Сколько дней вы даете на выполнение задачи?")
+                user_input_days = int(input(">> "))
+                try:
+                    data_obj = datetime.strptime(added_date, "%Y-%m-%d (Время: %H:%M)")
+                    new_date_obj = data_obj + timedelta(days=user_input_days)
+                    date = f"{new_date_obj.date()} (Время: {new_date_obj.strftime("%H:%M")})"
+                    return date
+                except ValueError:
+                    print("Невозможно прибавить дни к текущей дате")
+
+
 
 
 
