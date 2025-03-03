@@ -7,6 +7,11 @@ from datetime import datetime, timedelta
 class TaskManager:
     def __init__(self):
         self.tasks = []
+        self.priorities = {
+            "1": "Задача низкой важности",
+            "2": "Задача умеренной важности",
+            "3": "Задача высокой важности",
+        }
 
     def add_task(self, task):
         self.tasks.append(task)
