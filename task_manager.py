@@ -28,6 +28,7 @@ class TaskManager:
                   f"Статус: {task.status}",
                   f"Дата добавления: {task.date}",
                   f"Дедлайн: {task.deadline}",
+                  f"Приоритет: {task.priority}",
                   sep = "\n"
                   )
             self.make_sep()
@@ -35,12 +36,13 @@ class TaskManager:
 
 
 class Task:
-    def __init__(self, title, description, status, date, deadline):
+    def __init__(self, title, description, status, date, deadline, priority):
         self.title = title
         self.description = description
         self.status = status
         self.date = date
         self.deadline = deadline
+        self.priority = priority
 
 
 
@@ -100,6 +102,30 @@ class Menu:
 
 
 
+    def set_priority(self):
+        print("Выберите приоритет:", "3 - Задача высокой важности", "2 - Задача умеренной важности", "1 - Задача низкой важности")
+        while True:
+            priority = input(">> ")
+            if priority == "1":
+                priority = 1
+                break
+
+            elif priority == "2":
+                priority = 2
+                break
+
+            elif priority == "3":
+                priority = 3
+                break
+
+            else:
+                print("Неизвестный выбор")
+
+        return priority
+
+
+
+
     def get_task_titles(self):
         for index, self.task in enumerate(self.task_manager.tasks, start=1):
             print(f"{self.task.title} - {index}")
@@ -119,7 +145,9 @@ class Menu:
 
                 deadline = self.set_deadline(date)
 
-                new_task = Task(title, description, status, date, deadline)
+                priority = self.set_priority()
+
+                new_task = Task(title, description, status, date, deadline, priority)
                 self.task_manager.add_task(new_task)
                 print(">> Задача успешно добавлена!")
 
