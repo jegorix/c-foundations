@@ -23,7 +23,7 @@ class TaskManager:
 
     def show_tasks(self):
         if not self.tasks:
-            print("Список задач пуст")
+            print("Список задач пуст (добавьте задачу)")
 
         for index, task in enumerate(self.tasks, start=1):
             self.make_sep()
@@ -161,55 +161,65 @@ class Menu:
                 self.task_manager.show_tasks()
 
             elif action == '4':
-                print("Приоритет какой задачи вы желаете изменить?")
-                self.get_task_titles()
-                while True:
-                    try:
-                        priority_change_choice = int(input(">> "))
-                        break
-                    except ValueError:
-                        print("Введите корректный номер задачи")
+                if len(self.task_manager.tasks) > 0:
+                    print("Приоритет какой задачи вы желаете изменить?")
+                    self.get_task_titles()
+                    while True:
+                        try:
+                            priority_change_choice = int(input(">> "))
+                            break
+                        except ValueError:
+                            print("Введите корректный номер задачи")
 
-                if priority_change_choice <= len(self.task_manager.tasks):
-                    self.task_manager.tasks[priority_change_choice - 1].priority = self.set_priority()
-                    print(f"Приоритет задачи '{self.task_manager.tasks[priority_change_choice - 1].title}' успешно изменен ")
+                    if priority_change_choice <= len(self.task_manager.tasks):
+                        self.task_manager.tasks[priority_change_choice - 1].priority = self.set_priority()
+                        print(f"Приоритет задачи '{self.task_manager.tasks[priority_change_choice - 1].title}' успешно изменен ")
+                    else:
+                        print("Нет задачи с таким номером")
                 else:
-                    print("Нет задачи с таким номером")
+                    print("Список задач пуст (добавьте задачу)")
 
             elif action == '3':
-                print("Статус какой задачи вы желаете изменить?")
-                self.get_task_titles()
-                while True:
-                    try:
-                        status_change_choice = int(input(">> "))
-                        break
-                    except ValueError:
-                        print("Введите корректный номер задачи")
+                if len(self.task_manager.tasks) > 0:
+                    print("Статус какой задачи вы желаете изменить?")
+                    self.get_task_titles()
+                    while True:
+                        try:
+                            status_change_choice = int(input(">> "))
+                            break
+                        except ValueError:
+                            print("Введите корректный номер задачи")
 
-                if status_change_choice <= len(self.task_manager.tasks):
-                    self.task_manager.tasks[status_change_choice - 1].status =  self.identify_status()
-                    print(f"Статус задачи '{self.task_manager.tasks[status_change_choice - 1].title}' успешно изменен")
+                    if status_change_choice <= len(self.task_manager.tasks):
+                        self.task_manager.tasks[status_change_choice - 1].status =  self.identify_status()
+                        print(f"Статус задачи '{self.task_manager.tasks[status_change_choice - 1].title}' успешно изменен")
+                    else:
+                        print("Нет задачи с таким номером")
                 else:
-                    print("Нет задачи с таким номером")
-
-            elif action == '5':
-                self.get_task_titles()
-                print("Какую задачу вы хотите удалить?")
-                while True:
-                    try:
-                        task_to_delete = int(input(">> "))
-                        break
-                    except ValueError:
-                        print("Введите корректный номер задачи")
-
-                if task_to_delete <= len(self.task_manager.tasks):
-                    print(f"Задача '{self.task_manager.tasks[task_to_delete - 1].title}' успешно удалена")
-                    self.task_manager.tasks.pop(task_to_delete-1)
-                else:
-                    print("Нет задачи с таким номером")
+                    print("Список задач пуст (добавьте задачу)")
 
 
             elif action == '5':
+                if len(self.task_manager.tasks) > 0:
+                    self.get_task_titles()
+                    print("Какую задачу вы хотите удалить?")
+                    while True:
+                        try:
+                            task_to_delete = int(input(">> "))
+                            break
+                        except ValueError:
+                            print("Введите корректный номер задачи")
+
+                    if task_to_delete <= len(self.task_manager.tasks):
+                        print(f"Задача '{self.task_manager.tasks[task_to_delete - 1].title}' успешно удалена")
+                        self.task_manager.tasks.pop(task_to_delete-1)
+                    else:
+                        print("Нет задачи с таким номером")
+                else:
+                    print("Список задач пуст (добавьте задачу)")
+
+
+            elif action == '6':
                 print("Выход...")
                 return False
         else:
