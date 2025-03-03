@@ -228,8 +228,6 @@ class Menu:
         return True
 
 
-
-
 def main():
     task_manager = TaskManager()
     menu = Menu(task_manager)
@@ -243,3 +241,14 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# сортировка по
+# приоритету
+# дате добавления
+# названию
+
+# сохранение в файл
+
+# графический интерфейс
+
+# api django(rest) или telegram
