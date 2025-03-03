@@ -59,8 +59,9 @@ class Menu:
             '1': "Добавить задачу",
             '2': "Показать список задач",
             '3': "Изменить статус задачи",
-            '4': "Удалить задачу",
-            '5': "Выйти"
+            '4': "Изменить приоритет задачи",
+            '5': "Удалить задачу",
+            '6': "Выйти"
         }
 
     def show_actions(self):
@@ -108,7 +109,7 @@ class Menu:
 
 
     def set_priority(self):
-        print("Выберите приоритет:", "3 - Задача высокой важности", "2 - Задача умеренной важности", "1 - Задача низкой важности")
+        print("Выберите приоритет:", "3 - Задача высокой важности", "2 - Задача умеренной важности", "1 - Задача низкой важности", sep = "\n")
         while True:
             priority = input(">> ")
             if priority == "1":
@@ -159,6 +160,22 @@ class Menu:
             elif action == '2':
                 self.task_manager.show_tasks()
 
+            elif action == '4':
+                print("Приоритет какой задачи вы желаете изменить?")
+                self.get_task_titles()
+                while True:
+                    try:
+                        priority_change_choice = int(input(">> "))
+                        break
+                    except ValueError:
+                        print("Введите корректный номер задачи")
+
+                if priority_change_choice <= len(self.task_manager.tasks):
+                    self.task_manager.tasks[priority_change_choice - 1].priority = self.set_priority()
+                    print(f"Приоритет задачи '{self.task_manager.tasks[priority_change_choice - 1].title}' успешно изменен ")
+                else:
+                    print("Нет задачи с таким номером")
+
             elif action == '3':
                 print("Статус какой задачи вы желаете изменить?")
                 self.get_task_titles()
@@ -167,7 +184,7 @@ class Menu:
                         status_change_choice = int(input(">> "))
                         break
                     except ValueError:
-                        print("Введите корректный номер статуса")
+                        print("Введите корректный номер задачи")
 
                 if status_change_choice <= len(self.task_manager.tasks):
                     self.task_manager.tasks[status_change_choice - 1].status =  self.identify_status()
@@ -175,7 +192,7 @@ class Menu:
                 else:
                     print("Нет задачи с таким номером")
 
-            elif action == '4':
+            elif action == '5':
                 self.get_task_titles()
                 print("Какую задачу вы хотите удалить?")
                 while True:
