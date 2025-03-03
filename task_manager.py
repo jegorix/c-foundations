@@ -112,15 +112,15 @@ class Menu:
         while True:
             priority = input(">> ")
             if priority == "1":
-                priority = 1
+                priority = self.task_manager.priorities["1"]
                 break
 
             elif priority == "2":
-                priority = 2
+                priority = self.task_manager.priorities["2"]
                 break
 
             elif priority == "3":
-                priority = 3
+                priority = self.task_manager.priorities["3"]
                 break
 
             else:
