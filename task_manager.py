@@ -13,6 +13,13 @@ class TaskManager:
             "3": "Задача высокой важности",
         }
 
+        self.priority_order = {
+            "Задача низкой важности": 1,
+            "Задача умеренной важности": 2,
+            "Задача высокой важности": 3
+
+        }
+
     def add_task(self, task):
         self.tasks.append(task)
 
@@ -123,12 +130,16 @@ class Menu:
             elif priority == "3":
                 priority = self.task_manager.priorities["3"]
                 break
-
             else:
                 print("Неизвестный выбор")
 
         return priority
 
+    # ДОБАВИТЬ СОРТИРОВКИ
+    def tasks_sort(self, user_input):
+        if user_input == "1":
+            self.task_manager.tasks.sort(key = lambda task: self.task_manager.priority_order[task.priority], reverse = True)
+            self.task_manager.show_tasks()
 
 
 
@@ -158,7 +169,15 @@ class Menu:
                 print(">> Задача успешно добавлена!")
 
             elif action == '2':
-                self.task_manager.show_tasks()
+                print("Сортировать задачи?", "1 - По приоритету", "2 - По дате добавления",
+                      "3 - По дедлайну", "4 - По статусу", "5 - не сортировать", sep = "\n")
+
+                user_input_sort = input(">> ")
+
+                if user_input_sort == "5":
+                    self.task_manager.show_tasks()
+                else:
+                    self.tasks_sort(user_input_sort)
 
             elif action == '4':
                 if len(self.task_manager.tasks) > 0:
