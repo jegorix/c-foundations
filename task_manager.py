@@ -146,9 +146,23 @@ class Menu:
         if user_input == "1":
             self.task_manager.tasks.sort(key = lambda task: self.task_manager.priority_order[task.priority], reverse = True)
             self.task_manager.show_tasks()
+
         elif user_input == "2":
-            self.task_manager.tasks.sort(key = lambda task: datetime.strptime(task.date, "%Y-%m-%d (Время: %H:%M)") , reverse = True )
-            self.task_manager.show_tasks()
+            try:
+                self.task_manager.tasks.sort(key = lambda task: datetime.strptime(task.date, "%Y-%m-%d (Время: %H:%M)") , reverse = True )
+                self.task_manager.show_tasks()
+            except ValueError:
+                print("Невозможно выполнить сортировку по дате добавления из-за пользовательского ввода")
+                self.task_manager.show_tasks()
+
+        elif user_input == "3":
+            try:
+                self.task_manager.tasks.sort(key = lambda task: datetime.strptime(task.deadline, "%Y-%m-%d (Время: %H:%M)") , reverse = True )
+                self.task_manager.show_tasks()
+            except ValueError:
+                print("Невозможно выполнить сортировку по дедлайну из-за пользовательского ввода")
+                self.task_manager.show_tasks()
+
 
 
 
