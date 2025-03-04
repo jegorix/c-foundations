@@ -157,7 +157,7 @@ class Menu:
 
         elif user_input == "3":
             try:
-                self.task_manager.tasks.sort(key = lambda task: datetime.strptime(task.deadline, "%Y-%m-%d (Время: %H:%M)") , reverse = True )
+                self.task_manager.tasks.sort(key = lambda task: datetime.strptime(task.deadline, "%Y-%m-%d (Время: %H:%M)") , reverse = False )
                 self.task_manager.show_tasks()
             except ValueError:
                 print("Невозможно выполнить сортировку по дедлайну из-за пользовательского ввода")
