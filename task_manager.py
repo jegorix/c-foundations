@@ -21,8 +21,8 @@ class TaskManager:
         }
 
         self.status_order = {
-            "выполнено": 1,
-            "не выполнено": 2
+            "Выполнено": 1,
+            "Не выполнено": 2
         }
 
 
@@ -163,6 +163,16 @@ class Menu:
                 print("Невозможно выполнить сортировку по дедлайну из-за пользовательского ввода")
                 self.task_manager.show_tasks()
 
+        elif user_input == "4":
+            try:
+                self.task_manager.tasks.sort(key = lambda task: self.task_manager.status_order[task.status], reverse = True)
+                self.task_manager.show_tasks()
+            except KeyError:
+                print("Невозможно выполнить сортировку по статусу из-за пользовательского статуса")
+                self.task_manager.show_tasks()
+
+
+
 
 
 
@@ -289,7 +299,7 @@ if __name__ == '__main__':
 # приоритету
 # дате добавления
 # названию
-
+# удалить за раз все выполненнные задачи
 # сохранение в файл
 
 # графический интерфейс
