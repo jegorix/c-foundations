@@ -20,6 +20,12 @@ class TaskManager:
 
         }
 
+        self.status_order = {
+            "выполнено": 1,
+            "не выполнено": 2
+        }
+
+
     def add_task(self, task):
         self.tasks.append(task)
 
@@ -140,6 +146,10 @@ class Menu:
         if user_input == "1":
             self.task_manager.tasks.sort(key = lambda task: self.task_manager.priority_order[task.priority], reverse = True)
             self.task_manager.show_tasks()
+        elif user_input == "2":
+            self.task_manager.tasks.sort(key = lambda task: datetime.strptime(task.date, "%Y-%m-%d (Время: %H:%M)") , reverse = True )
+            self.task_manager.show_tasks()
+
 
 
 
