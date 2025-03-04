@@ -137,7 +137,7 @@ class Menu:
                 priority = self.task_manager.priorities["3"]
                 break
             else:
-                print("Неизвестный выбор")
+                print("Неизвестный выбор", "Попробуйте еще раз:", sep = "\n")
 
         return priority
 
