@@ -1,6 +1,8 @@
 
 def binary_op(func):
     def redef(stack):
+        if len(stack) < 2:
+            raise Exception(f'Not enough operands(now = {len(stack)})')
         b = stack.pop()
         a = stack.pop()
         result = func(a, b)
@@ -23,22 +25,15 @@ def execute_program(program: str):
     stack = []
     for token in program.split():
         if token == '+':
-            if len(stack) < 2:
-                raise Exception(f'Not enough operands(now = {len(stack)})')
 
-            b = stack.pop()
-            a = stack.pop()
-            result = a + b
-            stack.append(result)
+
+            add(stack)
 
         elif token == '-':
             if len(stack) < 2:
                 raise Exception(f'Not enough operands(now = {len(stack)})')
 
-            b = stack.pop()
-            a = stack.pop()
-            result = a - b
-            stack.append(result)
+            sub(stack)
 
         else:
             try:
