@@ -8,6 +8,13 @@ def binary_op(func):
         return result
     return redef
 
+@binary_op
+def add(a, b):
+    return a + b
+
+@binary_op
+def sub(a, b):
+    return a - b
 
 
 
