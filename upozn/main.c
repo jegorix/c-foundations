@@ -19,8 +19,9 @@ int main(void) {
         printf("║                                      ║\n");
         printf("╚══════════════════════════════════════╝\n");
 
-        printf("\n╭──────────────────────────────╮\n");
-        printf("│Введите команду:              │\n");
+        printf("\n╭───────────────────────────────────╮\n");
+        printf("│        Введите команду:           │\n");
+        printf("╰───────────────────────────────────╯\n");
         printf("╰─> ");
         fflush(stdout);
 
@@ -37,7 +38,6 @@ int main(void) {
             return 0;
         }
 
-        clearScreen();
         printf("\n     Загрузка");
         loadingAnimation(3, 250);
         operating_mode_menu();

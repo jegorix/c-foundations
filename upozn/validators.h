@@ -5,6 +5,7 @@
 #ifndef UPOZN_VALIDATORS_H
 #define UPOZN_VALIDATORS_H
 #include <stdio.h>
+#include "animations.h"
 
 enum
 {

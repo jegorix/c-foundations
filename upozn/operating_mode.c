@@ -9,6 +9,7 @@
 
 
 void task_manager_menu() {
+    TaskList* list = malloc(sizeof(TaskList));
     int running = 1;
     while (running) {
         clearScreen();
@@ -27,7 +28,11 @@ void task_manager_menu() {
         printf("║ 9 - Сортировать задачи                          ║\n");
         printf("║ q - Выход в меню выбора                         ║\n");
         printf("╚═════════════════════════════════════════════════╝\n");
-        printf("\n>> ");
+
+      printf("\n╭───────────────────────────────────╮\n");
+        printf("│        Введите действие:          │\n");
+        printf("╰───────────────────────────────────╯\n");
+        printf("╰─> ");
 
         char user_choice[10];
         fgets(user_choice, 10, stdin);
@@ -40,7 +45,7 @@ void task_manager_menu() {
                 break;
 
             case '1':
-
+                addTask(list);
                 break;
 
             case '2':
@@ -75,6 +80,11 @@ void task_manager_menu() {
                 break;
 
             case 'q':
+
+              printf("\n╭────────────────────────╮\n");
+                printf("│        Выход           │\n");
+                printf("╰────────────────────────╯\n");
+
                 printf("Выход в меню выбора");
                 loadingAnimation(3, 250);
                 running = 0;
@@ -113,9 +123,12 @@ void operating_mode_menu()
         printf("║ 2. Загрузить задачи из файла ║\n");
         printf("║ 3. Выход в главное меню      ║\n");
         printf("╚══════════════════════════════╝\n");
-        printf("\n╭──────────────────────────────╮\n");
-        printf("│Введите команду:              │\n");
+
+      printf("\n╭───────────────────────────────────╮\n");
+        printf("│        Введите команду:           │\n");
+        printf("╰───────────────────────────────────╯\n");
         printf("╰─> ");
+
         int choice = execute_verification(1, 3);
         switch (choice)
         {
@@ -136,7 +149,7 @@ void operating_mode_menu()
                 return;
 
             default:
-                printf("Неверный выбор! Попробуйте еще раз.");
+                printf("Неверный выбор! Попробуйте еще раз.\n");
 
         }
 
