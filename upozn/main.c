@@ -1,11 +1,13 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
+#include "operating_mode.h"
 
 int main(void) {
     int running = 1;
 
     while(running)
     {
+        clearScreen();
       printf("\n╔══════════════════════════════════════╗\n");
         printf("║                                      ║\n");
         printf("║         Добро пожаловать в           ║\n");
@@ -16,10 +18,11 @@ int main(void) {
         printf("║         Введите 'q' для выхода       ║\n");
         printf("║                                      ║\n");
         printf("╚══════════════════════════════════════╝\n");
+
         printf("\n╭──────────────────────────────╮\n");
         printf("│Введите команду:              │\n");
         printf("╰─> ");
-
+        fflush(stdout);
 
 
 
@@ -27,12 +30,17 @@ int main(void) {
         fgets(choice, 10, stdin);
         if(choice[0] == 'q' || choice[0] == 'Q')
         {
-            printf("\nВыход из программы...\n");
+            printf("\n     Выход из программы");
+            loadingAnimation(3, 250);
+            clearScreen();
             running = 0;
             return 0;
         }
 
-        printf("\nЗапуск Task Manager...\n");
+        clearScreen();
+        printf("\n     Загрузка");
+        loadingAnimation(3, 250);
+        operating_mode_menu();
 
 
     }

@@ -9,7 +9,9 @@ void operating_mode_menu()
 {
     int running = 1;
 
+
     while(running) {
+        clearScreen();
         printf("\n╔══════════════════════════════╗\n");
         printf("║            МЕНЮ              ║\n");
         printf("╠══════════════════════════════╣\n");
@@ -24,6 +26,9 @@ void operating_mode_menu()
         switch (choice)
         {
             case 1:
+                printf("\n     Запуск");
+                loadingAnimation(3,250);
+                clearScreen();
 //                task_manager_create();
                 break;
 
@@ -31,10 +36,14 @@ void operating_mode_menu()
                 break;
 
             case 3:
-                printf("\nВыход в главное меню...\n");
+                printf("\n    Выход в главное меню");
+                loadingAnimation(3,250);
+                clearScreen();
                 running = 0;
                 return;
 
+            default:
+                printf("Неверный выбор! Попробуйте еще раз.");
 
         }
 
