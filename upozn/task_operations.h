@@ -28,6 +28,7 @@ typedef struct
 }TaskList;
 
 void addTask(TaskList* list);
+void showTasks(TaskList* list);
 
 
 #endif //UPOZN_TASK_OPERATIONS_H
