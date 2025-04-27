@@ -412,6 +412,70 @@ void markCompleteTask(TaskList* list) {
 }
 
 
+void deleteTask(TaskList* list)
+{
+    int running = 1;
+
+    if(list->size == 0)
+    {
+      printf("\n╭────────────────────────────────────────────────────────╮\n");
+        printf("│                 Нет задач для удаления.                │\n");
+        printf("╰────────────────────────────────────────────────────────╯\n");
+        return;
+    }
+
+    while(running)
+    {
+
+
+        if (list->size == 0) {
+            printf("\n╭────────────────────────────────────────────────────────╮\n");
+            printf("│                  Все задачи удалены!                   │\n");
+            printf("╰────────────────────────────────────────────────────────╯\n");
+            return;
+        }
+
+        TasksShortList(list);
+      printf("\n╭────────────────────────────────────────────────────────╮\n");
+        printf("│      Введите номер задачи, которую хотите удалить:     │\n");
+        printf("│        Для выхода из режима удаления, нажмите %d        │\n", list->size + 1);
+        printf("╰────────────────────────────────────────────────────────╯\n");
+        printf("╰─> ");
+
+
+        int id = execute_verification(1, list->size + 1);
+
+        if(id == list->size + 1)
+        {
+          printf("\n╭────────────────────────────────────────────────────────╮\n");
+            printf("│                   Выход из удаления                    │\n");
+            printf("╰────────────────────────────────────────────────────────╯\n");
+            printf("     Сохранение изменений");
+            loadingAnimation(3, 250);
+            running = 0;
+            return;
+        }
+
+        char* title = strdup(list->tasks[id-1].title);
+        free(list->tasks[id-1].title);
+        free(list->tasks[id-1].description);
+
+        for(int i = id - 1; i < list->size; i++)
+        {
+            list->tasks[i] = list->tasks[i+1];
+        }
+        list->size--;
+
+
+        printf("\n╭────────────────────────────────────────────────────────╮\n");
+        printf("   Задача № %d (%s) успешно удалена!       \n", id, title);
+          printf("╰────────────────────────────────────────────────────────╯\n");
+
+        free(title);
+
+    }
+
+}
 
 
 

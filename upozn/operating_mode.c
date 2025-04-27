@@ -66,6 +66,7 @@ printf("────────────────────────
                 break;
 
             case '6':
+                deleteTask(list);
                 break;
 
             case '7':
