@@ -62,7 +62,7 @@ printf("────────────────────────
                 break;
 
             case '5':
-
+                markCompleteTask(list);
                 break;
 
             case '6':

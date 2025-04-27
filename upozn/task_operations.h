@@ -30,6 +30,8 @@ typedef struct
 void addTask(TaskList* list);
 void showTasks(TaskList* list);
 void editTask(TaskList* list);
+void TasksShortList(TaskList* list);
+void markCompleteTask(TaskList* list);
 
 
 #endif //UPOZN_TASK_OPERATIONS_H
