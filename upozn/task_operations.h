@@ -6,6 +6,7 @@
 #define UPOZN_TASK_OPERATIONS_H
 #include "validators.h"
 #include <string.h>
+#include "getch_unix_without_conio.h"
 
 typedef struct
 {
@@ -35,6 +36,8 @@ void markCompleteTask(TaskList* list);
 void deleteTask(TaskList* list);
 void searchTask(TaskList* list);
 void show_micro_task(Task* task);
+void clearTasks(TaskList* task);
+void freeTasks(TaskList* list, int criteria);
 
 
 #endif //UPOZN_TASK_OPERATIONS_H

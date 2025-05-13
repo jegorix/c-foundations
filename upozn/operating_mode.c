@@ -40,6 +40,10 @@ void task_manager_menu() {
 //        fgets(user_choice, 10, stdin);
           char user_choice = fgetch();
 
+//            printf("Загрузка");
+//            loadingAnimation(3, 150);
+            clearScreen();
+
         clearScreen();                      // optionally
 
         switch (user_choice) {
@@ -78,7 +82,7 @@ printf("────────────────────────
                 break;
 
             case '8':
-
+                clearTasks(list);
                 break;
 
             case '9':
@@ -135,19 +139,20 @@ void operating_mode_menu()
         printf("╰───────────────────────────────────╯\n");
         printf("╰─> ");
 
-        int choice = execute_verification(1, 3);
+//        int choice = execute_verification(1, 3);
+        char choice = fgetch();
         switch (choice)
         {
-            case 1:
+            case '1':
                 printf("\n     Запуск");
                 loadingAnimation(3,250);
                 task_manager_menu();
                 break;
 
-            case 2:
+            case '2':
                 break;
 
-            case 3:
+            case '3':
                 printf("\n    Выход в главное меню");
                 loadingAnimation(3,250);
                 clearScreen();
