@@ -5,6 +5,8 @@
 #include "operating_mode.h"
 #include "validators.h"
 #include "task_operations.h"
+#include "getch_unix_without_conio.h"
+
 
 
 
@@ -34,11 +36,13 @@ void task_manager_menu() {
         printf("╰───────────────────────────────────╯\n");
         printf("╰─> ");
 
-        char user_choice[10];
-        fgets(user_choice, 10, stdin);
+//        char user_choice[10];
+//        fgets(user_choice, 10, stdin);
+          char user_choice = fgetch();
+
         clearScreen();                      // optionally
 
-        switch (user_choice[0]) {
+        switch (user_choice) {
 
             case '0':
 
@@ -70,7 +74,7 @@ printf("────────────────────────
                 break;
 
             case '7':
-
+                searchTask(list);
                 break;
 
             case '8':

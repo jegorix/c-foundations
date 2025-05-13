@@ -33,6 +33,8 @@ void editTask(TaskList* list);
 void TasksShortList(TaskList* list);
 void markCompleteTask(TaskList* list);
 void deleteTask(TaskList* list);
+void searchTask(TaskList* list);
+void show_micro_task(Task* task);
 
 
 #endif //UPOZN_TASK_OPERATIONS_H
