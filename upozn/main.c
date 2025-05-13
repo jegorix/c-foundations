@@ -27,9 +27,10 @@ int main(void) {
 
 
 
-        char choice[10];
-        fgets(choice, 10, stdin);
-        if(choice[0] == 'q' || choice[0] == 'Q')
+//        char choice[10];
+//        fgets(choice, 10, stdin);
+        char choice = fgetch();
+        if(choice == 'q' || choice == 'Q')
         {
             printf("\n     Выход из программы");
             loadingAnimation(3, 250);
