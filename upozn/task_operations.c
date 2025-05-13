@@ -5,6 +5,11 @@
 #include "task_operations.h"
 
 
+int calculate_deadline(Task* task)
+{
+    return task->day + task->month + task->year;
+}
+
 void addTask(TaskList* list)
 {
     if(list->size >= list->capacity)
@@ -63,6 +68,9 @@ void addTask(TaskList* list)
     int year = execute_verification(2025, max_limit);
     new_task->year = year;
     printf("\n");
+
+
+    new_task->deadline = calculate_deadline(new_task);
 
   printf("\n╭────────────────────────────────────────╮\n");
     printf("│ Введите приоритет задачи:              │\n");
@@ -576,11 +584,6 @@ void clearTasks(TaskList* list)
     }
 
 
-
-  printf("\n╭────────────────────────────────────────────────────────╮\n");
-    printf("│   Вы действительно хотите очистить весь список задач?  │\n");
-    printf("╰────────────────────────────────────────────────────────╯\n");
-
     TasksShortList(list);
     int running = 1;
 
@@ -663,11 +666,13 @@ void clearTasks(TaskList* list)
 
   }
 
-
-
-
-
 }
+
+
+
+
+
+
 
 
     //printf("\n╭───────────────────────╮        ╭───────────────────────╮\n");

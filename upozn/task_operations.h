@@ -8,6 +8,7 @@
 #include <string.h>
 #include "getch_unix_without_conio.h"
 
+
 typedef struct
 {
     int id;
@@ -18,6 +19,7 @@ typedef struct
     int year;
     int priority;
     int status;
+    int deadline;
 
 }Task;
 
@@ -38,6 +40,7 @@ void searchTask(TaskList* list);
 void show_micro_task(Task* task);
 void clearTasks(TaskList* task);
 void freeTasks(TaskList* list, int criteria);
+int calculate_deadline(Task* task);
 
 
 #endif //UPOZN_TASK_OPERATIONS_H
