@@ -22,15 +22,33 @@ void addTask(TaskList* list)
     new_task->id = list->size + 1;
 
     char buffer[256];
+    char* striped_buffer;
 
-  printf("\n╭───────────────────────────────────╮\n");
-    printf("│     Введите название задачи:      │\n");
-    printf("╰───────────────────────────────────╯\n");
+
+    do{
+        printf("\n╭───────────────────────────────────╮\n");
+        printf("│     Введите название задачи:      │\n");
+        printf("╰───────────────────────────────────╯\n");
     printf("╰─> ");
     fgets(buffer, 256, stdin);
     buffer[strcspn(buffer, "\n")] = 0;
-    new_task->title = strdup(buffer);
+    striped_buffer = strip(buffer);
+
+    if(strlen(striped_buffer) == 0)
+    {
+      printf("\n╭────────────────────────────────────────╮\n");
+        printf("│  Название задачи не может быть пустым  │\n");
+        printf("╰────────────────────────────────────────╯\n");
+        printf("\n");
+    }
+
+
+    }
+    while(strlen(striped_buffer) == 0);
+    new_task->title = strdup(striped_buffer);
     printf("\n");
+
+
 
   printf("\n╭───────────────────────────────────╮\n");
     printf("│     Введите описание задачи:      │\n");

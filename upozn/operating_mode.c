@@ -6,6 +6,7 @@
 #include "validators.h"
 #include "task_operations.h"
 #include "getch_unix_without_conio.h"
+#include "tasks_sorting_q_sort.h"
 
 
 
@@ -86,7 +87,7 @@ printf("────────────────────────
                 break;
 
             case '9':
-
+                taskSortMenu(list);
                 break;
 
             case 'q':

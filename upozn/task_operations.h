@@ -7,7 +7,7 @@
 #include "validators.h"
 #include <string.h>
 #include "getch_unix_without_conio.h"
-
+#include "auxiliary.h"
 
 typedef struct
 {
