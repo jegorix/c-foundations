@@ -9,6 +9,9 @@
 
 void taskSortMenu(TaskList* list);
 int compare_by_priority(void* condition, const void* a, const void* b);
+int compare_by_status(void* ascending, const void* a, const void* b);
+int compare_by_deadline(void* ascending, const void* a, const void* b);
+int compare_by_id(void* ascending, const void* a, const void* b);
 int ascending_answer();
 void exit_sorting();
 

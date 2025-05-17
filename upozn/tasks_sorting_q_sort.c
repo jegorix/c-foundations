@@ -13,6 +13,36 @@ int compare_by_priority(void* ascending, const void* a, const void* b)
     return condition ? result: -result;
 }
 
+
+int compare_by_status(void* ascending, const void* a, const void* b)
+{
+    int condition = *(int*) ascending;
+    Task* task_a = (Task*) a;
+    Task* task_b = (Task*) b;
+    int result = task_a->status - task_b->status;
+    return condition ? result: -result;
+
+}
+
+int compare_by_deadline(void* ascending, const void* a, const void* b)
+{
+    int condition = *(int*) ascending;
+    Task* task_a = (Task*) a;
+    Task* task_b = (Task*) b;
+    int result = task_a->deadline - task_b->deadline;
+    return condition ? result: -result;
+}
+
+
+int compare_by_id(void* ascending, const void* a, const void* b)
+{
+    int condition = *(int*) ascending;
+    Task* task_a = (Task*) a;
+    Task* task_b = (Task*) b;
+    int result = task_a->id - task_b->id;
+    return condition ? result: -result;
+}
+
 void exit_sorting()
 {
     printf("\n╭────────────────────────────────────────────────────────╮\n");
@@ -73,8 +103,32 @@ void taskSortMenu(TaskList* list) {
             case '1':
                 ascending = ascending_answer();
                 qsort_r(list->tasks, list->size, sizeof(Task), &ascending,compare_by_priority);
-                printf("\n╭────────────────────────────────────────────────────────╮\n");
+              printf("\n╭────────────────────────────────────────────────────────╮\n");
                 printf("│         Задачи отсортированы по приоритету.            │\n");
+                printf("╰────────────────────────────────────────────────────────╯\n");
+                break;
+
+            case '2':
+                ascending  = ascending_answer();
+                qsort_r(list->tasks, list->size, sizeof(Task), &ascending, compare_by_status);
+              printf("\n╭────────────────────────────────────────────────────────╮\n");
+                printf("│            Задачи отсортированы по статусу.            │\n");
+                printf("╰────────────────────────────────────────────────────────╯\n");
+                break;
+
+            case '3':
+                ascending = ascending_answer();
+                qsort_r(list->tasks, list->size, sizeof(Task), &ascending, compare_by_deadline);
+              printf("\n╭────────────────────────────────────────────────────────╮\n");
+                printf("│        Задачи отсортированы по сроку выполнения.       │\n");
+                printf("╰────────────────────────────────────────────────────────╯\n");
+                break;
+
+            case '4':
+                ascending = ascending_answer();
+                qsort_r(list->tasks, list->size, sizeof(Task), &ascending, compare_by_id);
+              printf("\n╭────────────────────────────────────────────────────────╮\n");
+                printf("│      Задачи отсортированы по порядковому номеру.       │\n");
                 printf("╰────────────────────────────────────────────────────────╯\n");
                 break;
 
@@ -86,9 +140,6 @@ void taskSortMenu(TaskList* list) {
                 exit_sorting();
                 running = 0;
                 break;
-
-
-
 
             default:
                 printf("\n╭────────────────────────────────────────────────────────╮\n");
