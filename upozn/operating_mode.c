@@ -50,7 +50,7 @@ void task_manager_menu() {
         switch (user_choice) {
 
             case '0':
-
+                fileTasksMenu(list, 0);
                 break;
 
             case '1':
@@ -67,7 +67,7 @@ printf("────────────────────────
                 break;
 
             case '4':
-
+                fileTasksMenu(list, 1);
                 break;
 
             case '5':
