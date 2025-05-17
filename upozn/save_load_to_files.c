@@ -177,6 +177,8 @@ void fileTasksMenu(TaskList* list, int flag)
 {
     char buffer[256];
     char* stripped_buffer;
+    const char* folder = "tasks/";
+    char full_path[512];
 
         do {
             printf("\n╭────────────────────────────────────────────────────────╮\n");
@@ -200,17 +202,20 @@ void fileTasksMenu(TaskList* list, int flag)
 
         } while (strlen(stripped_buffer) == 0);
 
+        snprintf(full_path, sizeof(full_path), "%s%s", folder, stripped_buffer);
+//        printf("%s\n", full_path);
+
       if(flag)
       {
-          saveTasks(list, stripped_buffer);
+          saveTasks(list, full_path);
       }
 
       else
       {
-          int value = isValidTaskFile(stripped_buffer);
+          int value = isValidTaskFile(full_path);
           if (value)
           {
-              loadTasks(list, stripped_buffer);
+              loadTasks(list, full_path);
           }
           else
           {
