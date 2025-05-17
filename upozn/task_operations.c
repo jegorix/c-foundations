@@ -118,10 +118,10 @@ void show_micro_task(Task* task)
     printf("╰────────────────────────╯\n");
 
 
-    printf("\n╭────────────────────────╮\n");
-    printf("│       Название:        │\n");
+  printf("\n╭──────────────────────────────╮\n");
+    printf("│           Название:          │\n");
     printf("  %s \n", task->title);
-    printf("╰────────────────────────╯\n");
+    printf("╰──────────────────────────────╯\n");
 
 
     printf("\n╭────────────────────────────────────────────────────────╮\n");
@@ -589,6 +589,17 @@ void freeTasks(TaskList* list, int criteria)
 
 
 
+void clean(TaskList* list)
+{
+    for (int i = 0; i < list->size; i++) {
+        free(list->tasks[i].title);
+        free(list->tasks[i].description);
+    }
+    list->size = 0;
+}
+
+
+
 
 
 void clearTasks(TaskList* list)
@@ -650,11 +661,7 @@ void clearTasks(TaskList* list)
                   break;
               }
 
-              for (int i = 0; i < list->size; i++) {
-                  free(list->tasks[i].title);
-                  free(list->tasks[i].description);
-              }
-              list->size = 0;
+              clean(list);
 
               printf("\n╭────────────────────────────────────────────────────────╮\n");
               printf("│                Все задачи были удалены.                │\n");

@@ -49,7 +49,7 @@ void loadTasks(TaskList* list, const char* filename)
 
     while(fgets(line, sizeof(line), file))
     {
-//        printf("Чтение строки: %s", line);
+
         if(strncmp(line, "Задача №", 8) == 0) sscanf(line, "Задача №%d", &temp.id);
 
         else if(strncmp(line, "Название:", 9) == 0) sscanf(line, "Название: %[^\n]", temp.title);
@@ -217,7 +217,8 @@ void fileTasksMenu(TaskList* list, int flag)
             printf("\n╔═══════════════════════════════════════════════════╗\n");
               printf("║                    ОШИБКА                         ║\n");
               printf("║  Файл не прошёл проверку на валидность!           ║\n");
-              printf("║  Убедитесь, что каждая задача содержит:           ║\n");
+              printf("║  Убедитесь, что файл существует, и                ║\n");
+              printf("║  каждая задача содержит:                          ║\n");
               printf("║                                                   ║\n");
               printf("║  • Номер задачи (Задача №...)                     ║\n");
               printf("║  • Название                                       ║\n");

@@ -10,5 +10,5 @@
 #include "save_load_to_files.h"
 
 void operating_mode_menu();
-void task_manager_menu();
+void task_manager_menu(TaskList* list);
 #endif //UPOZN_OPERATING_MODE_H

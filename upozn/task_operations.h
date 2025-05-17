@@ -41,6 +41,7 @@ void show_micro_task(Task* task);
 void clearTasks(TaskList* task);
 void freeTasks(TaskList* list, int criteria);
 int calculate_deadline(Task* task);
+void clean(TaskList* list);
 
 
 #endif //UPOZN_TASK_OPERATIONS_H

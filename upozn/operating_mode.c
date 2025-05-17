@@ -11,8 +11,7 @@
 
 
 
-void task_manager_menu() {
-    TaskList* list = malloc(sizeof(TaskList));
+void task_manager_menu(TaskList* list) {
     int running = 1;
     while (running) {
         clearScreen();
@@ -50,6 +49,7 @@ void task_manager_menu() {
         switch (user_choice) {
 
             case '0':
+                clean(list);
                 fileTasksMenu(list, 0);
                 break;
 
@@ -123,6 +123,7 @@ printf("────────────────────────
 void operating_mode_menu()
 {
     int running = 1;
+    TaskList* list = malloc(sizeof(TaskList));
 
 
     while(running) {
@@ -147,10 +148,19 @@ void operating_mode_menu()
             case '1':
                 printf("\n     Запуск");
                 loadingAnimation(3,250);
-                task_manager_menu();
+                task_manager_menu(list);
                 break;
 
             case '2':
+                printf("\n     Запуск");
+                loadingAnimation(3,250);
+                clearScreen();
+                clean(list);
+                fileTasksMenu(list, 0);
+                showTasks(list);
+                printf("\nНажмите Enter для продолжения...");
+                getchar();
+                task_manager_menu(list);
                 break;
 
             case '3':
