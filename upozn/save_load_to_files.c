@@ -5,6 +5,30 @@
 #include "save_load_to_files.h"
 
 
+int isValidTaskFile(const char* filename)
+{
+    FILE* file = fopen(filename, "r");
+    if (!file)
+        return 0;
+
+    int id = 0, title = 0, date = 0;
+    char line[256];
+
+    while (fgets(line, sizeof(line), file))
+    {
+        if (strncmp(line, "Задача №", 8) == 0) id = 1;
+        else if (strncmp(line, "Название:", 9) == 0) title = 1;
+        else if (strncmp(line, "Срок выполнения до", 18) == 0) date = 1;
+
+        if (id && title && date)
+            break;
+    }
+
+    fclose(file);
+    return id && title && date;
+}
+
+
 
 void loadTasks(TaskList* list, const char* filename)
 {
@@ -183,7 +207,26 @@ void fileTasksMenu(TaskList* list, int flag)
 
       else
       {
-          loadTasks(list, stripped_buffer);
+          int value = isValidTaskFile(stripped_buffer);
+          if (value)
+          {
+              loadTasks(list, stripped_buffer);
+          }
+          else
+          {
+            printf("\n╔═══════════════════════════════════════════════════╗\n");
+              printf("║                    ОШИБКА                         ║\n");
+              printf("║  Файл не прошёл проверку на валидность!           ║\n");
+              printf("║  Убедитесь, что каждая задача содержит:           ║\n");
+              printf("║                                                   ║\n");
+              printf("║  • Номер задачи (Задача №...)                     ║\n");
+              printf("║  • Название                                       ║\n");
+              printf("║  • Срок выполнения                                ║\n");
+              printf("║  • Уровень важности                               ║\n");
+              printf("║  • Статус выполнения                              ║\n");
+              printf("╚═══════════════════════════════════════════════════╝\n\n");
+          }
+
       }
 
 
