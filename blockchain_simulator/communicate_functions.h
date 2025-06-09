@@ -15,5 +15,6 @@
 
 void createTransactionInterface(Transaction** mempool);
 void show_mempool(Transaction* mempool);
-void minerProcess(BlockChain* blockchain, Transaction** mempool);
+void miningProcess(BlockChain* blockchain, Transaction** mempool);
+void blockchainVisualisation(BlockChain* blockchain);
 #endif //BLOCKCHAIN_SIMULATOR_COMMUNICATE_FUNCTIONS_H

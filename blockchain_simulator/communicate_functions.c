@@ -62,6 +62,7 @@ void createTransactionInterface(Transaction** mempool)
 }
 
 
+
 void show_mempool(Transaction* mempool)
 {
     if(mempool == NULL)
@@ -93,8 +94,18 @@ void show_mempool(Transaction* mempool)
     }
 }
 
-void minerProcess(BlockChain* blockchain, Transaction** mempool)
+
+void miningProcess(BlockChain* blockchain, Transaction** mempool)
 {
+
+  if(*mempool == NULL)
+  {
+    printf("\n╭───────────────────────────────────╮\n");
+    printf("│          Mempool is empty         │\n");
+    printf("╰───────────────────────────────────╯\n");
+    return;
+  }
+
 
 printf("\n╭───────────────────────────────────╮\n");
   printf("│           PRESS 'ENTER'           │\n");
@@ -109,11 +120,12 @@ printf("\n╭──────────────────────�
   {
     blockchain->size = 0;
     const char* GENESIS_PREV_HASH = "0000000000000000000000000000000000000000000000000000000000000000";
-    Block* genesis = create_block(blockchain->size++, GENESIS_PREV_HASH, *mempool);
+    Block* genesis = create_block(blockchain->size, GENESIS_PREV_HASH, *mempool);
 
     if(mine_block(genesis))
     {
       blockchain->head = genesis;
+      blockchain->size++;
       printf("\n╭───────────────────────────────────╮\n");
       printf("│           GENESIS BLOCK           │\n");
       printf("│         SUCCESSFULLY ADDED        │\n");
@@ -125,7 +137,7 @@ printf("\n╭──────────────────────�
   {
   while(last_block->next != NULL) last_block = last_block->next;
 
-  Block* new_block = create_block(blockchain->size++, last_block->hash, *mempool);
+  Block* new_block = create_block(blockchain->size, last_block->hash, *mempool);
     if(mine_block(new_block))
       {
         last_block->next = new_block;
@@ -151,6 +163,39 @@ printf("\n╭──────────────────────�
   printf("│               MEMPOOL             │\n");
   printf("│           HAS BEEN CLEARED        │\n");
   printf("╰───────────────────────────────────╯\n");
+
+}
+
+void blockchainVisualisation(BlockChain* blockchain)
+{
+  Block* block = blockchain->head;
+  if(block == NULL)
+  {
+    printf("\n╭───────────────────────────────────╮\n");
+    printf("│        BlockChain is empty        │\n");
+    printf("╰───────────────────────────────────╯\n");
+
+  }
+
+  while(block != NULL)
+  {
+
+  printf("\n╭───────────────────────────────────╮\n");
+    printf("│            BLOCKCHAIN             │\n");
+    printf("╰───────────────────────────────────╯\n");
+
+    printf("\n");
+
+    printf("\n╭───────────────────────────────────╮\n");
+    printf("           BLOCK-%d           \n", block->index);
+    printf("        previous hash: %s         \n", block->prev_hash);
+    printf("        block hash: %s         \n", block->hash);
+    printf("        transaction count: %d         \n", block->transaction_count);
+    printf("╰───────────────────────────────────╯\n");
+
+    block = block->next;
+
+  }
 
 
 }

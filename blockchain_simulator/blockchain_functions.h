@@ -13,6 +13,7 @@
 #include "block.h"
 #include "blockchain.h"
 #include "validators.h"
+#include <stdint.h>
 
 
 Transaction* create_transaction(const char* sender, const char* receiver, float amount);
@@ -24,6 +25,6 @@ int isValidHash(const char* hash, int difficulty);
 void simple_hash(const char* input, int nonce, char* output);
 int mine_block(Block* block);
 char* make_serialization(Block* block);
-Block* create_block(int index, const char* prev_hash, Transaction* transactions)
+Block* create_block(int index, const char* prev_hash, Transaction* transactions);
 
 #endif //BLOCKCHAIN_SIMULATOR_BLOCKCHAIN_FUNCTIONS_H

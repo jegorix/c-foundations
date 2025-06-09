@@ -74,14 +74,14 @@ void transaction_to_string(const Transaction* head, char* output, int limit_size
 
 void simple_hash(const char* input, int nonce, char* output)
 {
-    unsigned long hash = 5381;
+    uint32_t hash = 5381;
     int c;
     while((c = *input++))
     {
         hash = ((hash << 5) + hash) ^ c;
     }
     hash ^= nonce;
-    sprintf(output, "%08lx", hash);
+    sprintf(output, "%08x", hash);
     char final_hash[65] = "";
     for(int i = 0; i < 8; i++)
     {
@@ -93,15 +93,16 @@ void simple_hash(const char* input, int nonce, char* output)
 
 int mine_block(Block* block)
 {
-    char* serialized = make_serialization(block);
     char hash_output[65];
     unsigned int nonce = 0;
 
     do
     {
         block->nonce = nonce;
+        char* serialized = make_serialization(block);
         simple_hash(serialized, block->nonce, hash_output);
-        printf("Try-%d. HASH: %s", nonce++, hash_output);
+        free(serialized);
+        printf("Try-%d. HASH: %s\n", nonce, hash_output);
 
         if(isValidHash(hash_output, 1))
         {
@@ -125,8 +126,7 @@ char* make_serialization(Block* block)
     assert(block_data != NULL);
     char output[1024];
     transaction_to_string(block->transaction, output, sizeof(output));
-    snprintf(block_data, 1024, "%d%ld%s%d%s", block->index, block->timestamp, block->prev_hash,
-             block->nonce, output);
+    snprintf(block_data, 1024, "%d%ld%s%s", block->index, block->timestamp, block->prev_hash, output);
 
     return block_data;
 }
@@ -144,6 +144,7 @@ Block* create_block(int index, const char* prev_hash, Transaction* transactions)
     strcpy(block->hash, ""); // create HASH FUNC
     block->nonce = 0; // nonce calculate
     block->transaction = transactions;
+    block->timestamp = time(NULL);
 
 
     Transaction* current = transactions;
