@@ -5,14 +5,17 @@
 #ifndef BLOCKCHAIN_SIMULATOR_BLOCK_H
 #define BLOCKCHAIN_SIMULATOR_BLOCK_H
 #include "transaction.h"
+#define HASH_SIZE 65
 
 typedef struct{
     int index;
     char prev_hash[65];
     char hash[65];
     int nonce;
-    int timestamp;
+    time_t timestamp;
     Transaction* transaction;
+    int transaction_count;
+
     struct Block* next;
 }Block;
 

@@ -11,7 +11,9 @@
 #include <validators.h>
 #include "transaction.h"
 #include "blockchain_functions.h"
+#include "getch_unix_without_conio.h"
 
 void createTransactionInterface(Transaction** mempool);
 void show_mempool(Transaction* mempool);
+void minerProcess(BlockChain* blockchain, Transaction** mempool);
 #endif //BLOCKCHAIN_SIMULATOR_COMMUNICATE_FUNCTIONS_H

@@ -91,6 +91,66 @@ void show_mempool(Transaction* mempool)
 
         current = current->next;
     }
+}
+
+void minerProcess(BlockChain* blockchain, Transaction** mempool)
+{
+
+printf("\n╭───────────────────────────────────╮\n");
+  printf("│           PRESS 'ENTER'           │\n");
+  printf("│      TO START MINING PROCESS      │\n");
+  printf("╰───────────────────────────────────╯\n");
+
+  fgetch();
+
+  Block* last_block = blockchain->head;
+
+  if(last_block == NULL)
+  {
+    blockchain->size = 0;
+    const char* GENESIS_PREV_HASH = "0000000000000000000000000000000000000000000000000000000000000000";
+    Block* genesis = create_block(blockchain->size++, GENESIS_PREV_HASH, *mempool);
+
+    if(mine_block(genesis))
+    {
+      blockchain->head = genesis;
+      printf("\n╭───────────────────────────────────╮\n");
+      printf("│           GENESIS BLOCK           │\n");
+      printf("│         SUCCESSFULLY ADDED        │\n");
+      printf("│           TO BLOCKCHAIN           │\n");
+      printf("╰───────────────────────────────────╯\n");
+    }
+  }
+  else
+  {
+  while(last_block->next != NULL) last_block = last_block->next;
+
+  Block* new_block = create_block(blockchain->size++, last_block->hash, *mempool);
+    if(mine_block(new_block))
+      {
+        last_block->next = new_block;
+        blockchain->size++;
+
+        printf("\n╭───────────────────────────────────╮\n");
+          printf("│              BLOCK-%d             │\n", blockchain->size);
+          printf("│         SUCCESSFULLY MINED        │\n");
+          printf("╰───────────────────────────────────╯\n");
+      }
+    }
+
+  Transaction* head = *mempool;
+  while(head != NULL)
+  {
+    Transaction* temp = head;
+    head = head->next;
+    free(temp);
+  }
+  *mempool = NULL;
+
+printf("\n╭───────────────────────────────────╮\n");
+  printf("│               MEMPOOL             │\n");
+  printf("│           HAS BEEN CLEARED        │\n");
+  printf("╰───────────────────────────────────╯\n");
 
 
 }
