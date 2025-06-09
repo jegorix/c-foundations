@@ -8,6 +8,9 @@
 void show_interface()
 {
     Transaction* mempool = NULL;
+    BlockChain* blockchain = malloc(sizeof(blockchain));
+    assert(blockchain != NULL);
+
 
     int running = 1;
     while(running)
@@ -26,7 +29,7 @@ void show_interface()
                 "║ 6 - Save Blockchain                             ║\n"
                 "║ 7 - Blockchain History                          ║\n"
                 "║ 8 - Editing mode                                ║\n"
-                "║ 9 -                           ║\n"
+                "║ 9 -                                             ║\n"
                 "║ q - Exit                                        ║\n"
                 "╚═════════════════════════════════════════════════╝\n"
         );
@@ -51,7 +54,7 @@ void show_interface()
                 break;
 
             case '2':
-
+                miningProcess(blockchain, &mempool);
                 break;
 
             case '3':
@@ -63,7 +66,7 @@ void show_interface()
                 break;
 
             case '5':
-
+                blockchainVisualisation(blockchain);
                 break;
 
             case '6':
@@ -86,6 +89,7 @@ void show_interface()
                 printf("\n╭────────────────────────╮\n");
                 printf("│          Exit          │\n");
                 printf("╰────────────────────────╯\n");
+                free(blockchain);
 //                printf("Выход в меню выбора");
 //                loadingAnimation(3, 250);
                 running = 0;
@@ -105,6 +109,7 @@ void show_interface()
         getchar();
 
     }
+
 
 
 }
