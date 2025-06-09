@@ -76,12 +76,21 @@ void simple_hash(const char* input, int nonce, char* output)
 {
     uint32_t hash = 5381;
     int c;
+
+    while(nonce > 0)
+    {
+        hash = ((hash << 5) + hash) ^ (nonce & 0xFF);
+        nonce >>= 8;
+    }
+
     while((c = *input++))
     {
         hash = ((hash << 5) + hash) ^ c;
     }
-    hash ^= nonce;
+
+
     sprintf(output, "%08x", hash);
+
     char final_hash[65] = "";
     for(int i = 0; i < 8; i++)
     {
@@ -96,19 +105,38 @@ int mine_block(Block* block)
     char hash_output[65];
     unsigned int nonce = 0;
 
+
+  printf("\n╭───────────────────────────────────╮\n");
+    printf("│        Nonce Calculating...       │\n");
+    printf("╰───────────────────────────────────╯\n");
+
+
     do
     {
         block->nonce = nonce;
         char* serialized = make_serialization(block);
         simple_hash(serialized, block->nonce, hash_output);
         free(serialized);
-        printf("Try-%d. HASH: %s\n", nonce, hash_output);
+        int try = nonce + 1;
 
-        if(isValidHash(hash_output, 1))
+      printf("\n╭────────────────────────────────────────────────────────────────────────╮\n");
+        printf("│                                 Try-%d                                 │\n", try);
+        printf("│ Nonce = %d                                                             │\n", nonce);
+        printf("│ HASH: %s │\n", hash_output);
+        printf("╰────────────────────────────────────────────────────────────────────────╯\n");
+
+
+        if(isValidHash(hash_output, 1)) // FIX DIFFICULTY
         {
             strcpy(block->hash, hash_output);
             block->nonce = nonce;
-            printf("Block mined! Nonce: %u, Hash: %s\n", nonce, hash_output);
+
+          printf("\n╭────────────────────────────────────────────────────────────────────────╮\n");
+            printf("│                              BLOCK MINED                               │\n");
+            printf("│ Nonce = %d                                                             │\n", nonce);
+            printf("│ HASH: %s │\n", hash_output);
+            printf("╰────────────────────────────────────────────────────────────────────────╯\n");
+
             return 1;
         }
         nonce++;

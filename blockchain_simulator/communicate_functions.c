@@ -186,12 +186,15 @@ void blockchainVisualisation(BlockChain* blockchain)
 
     printf("\n");
 
-    printf("\n╭───────────────────────────────────╮\n");
-    printf("           BLOCK-%d           \n", block->index);
-    printf("        previous hash: %s         \n", block->prev_hash);
-    printf("        block hash: %s         \n", block->hash);
-    printf("        transaction count: %d         \n", block->transaction_count);
-    printf("╰───────────────────────────────────╯\n");
+
+
+  printf("\n╭───────────────────────────────────────────────────────────────────────────────────╮\n");
+    printf("│                                       BLOCK-%d                                    │\n", block->index);
+    printf("│ block hash: %s │\n", block->hash);
+    printf("│ previous hash: %s │\n", block->prev_hash);
+    printf("│ transaction count: %d                                                              │\n", block->transaction_count);
+    printf("╰───────────────────────────────────────────────────────────────────────────────────╯\n");
+
 
     block = block->next;
 
