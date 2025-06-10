@@ -188,3 +188,15 @@ Block* create_block(int index, const char* prev_hash, Transaction* transactions)
 
     return block;
 }
+
+Miner* create_miner(const char* name)
+{
+    Miner* miner = malloc(sizeof(Miner));
+    assert(miner!=NULL);
+    strncpy(miner->name, name, sizeof(name) - 1);
+    miner->name[sizeof(miner->name)-1] = '\0';
+    miner->balance = 0.0;
+    miner->blocks_mined = 0;
+    return miner;
+}
+

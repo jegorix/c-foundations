@@ -13,8 +13,10 @@
 #include "transaction.h"
 #include "block.h"
 #include "blockchain.h"
+#include "miner.h"
 #include "getch_unix_without_conio.h"
 #include "communicate_functions.h"
+#include "blockchain_functions.h"
 
 void show_interface();
 #endif //SIMPLE_DATABASE_USER_INTERFACE_H

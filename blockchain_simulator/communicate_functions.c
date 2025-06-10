@@ -18,7 +18,6 @@ void createTransactionInterface(Transaction** mempool)
     printf("\n");
 
     do {
-
       printf("\n╭───────────────────────────────────╮\n");
       printf("│        Enter sender name          │\n");
       printf("╰───────────────────────────────────╯\n");
@@ -129,8 +128,9 @@ void show_mempool(Transaction* mempool)
 }
 
 
-void miningProcess(BlockChain* blockchain, Transaction** mempool)
+void miningProcess(BlockChain* blockchain, Transaction** mempool, Miner* miner)
 {
+  assert(miner!=NULL);
 
   if(*mempool == NULL)
   {
@@ -161,6 +161,7 @@ printf("\n╭──────────────────────�
     {
       blockchain->head = genesis;
       blockchain->size++;
+      miner->blocks_mined++;
       printf("\n╭───────────────────────────────────╮\n");
       printf("│           GENESIS BLOCK           │\n");
       printf("│         SUCCESSFULLY ADDED        │\n");
@@ -177,7 +178,7 @@ printf("\n╭──────────────────────�
       {
         last_block->next = new_block;
         blockchain->size++;
-
+        miner->blocks_mined++;
         printf("\n╭───────────────────────────────────╮\n");
           printf("│              BLOCK-%d              │\n", blockchain->size);
           printf("│         SUCCESSFULLY MINED        │\n");
@@ -188,6 +189,7 @@ printf("\n╭──────────────────────�
   Transaction* head = *mempool;
   while(head != NULL)
   {
+    miner->balance += head->fee;
     Transaction* temp = head;
     head = head->next;
     free(temp);
@@ -246,4 +248,19 @@ void blockchainVisualisation(BlockChain* blockchain)
   }
 
 
+}
+
+
+void minersBalance(Miner* miner)
+{
+printf("\n╔══════════════════════════════╗\n");
+  printf("║          MINER INFO          ║\n");
+  printf("╠══════════════════════════════╣\n");
+  printf("  Name: %s  \n", miner->name);
+  printf("\n");
+  printf("  Balance: %.02f \n", miner->balance);
+  printf("\n");
+  printf("  Blocks mined: %d      \n", miner->blocks_mined);
+  printf("╚══════════════════════════════╝\n");
+  printf("\n");
 }

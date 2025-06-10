@@ -10,6 +10,7 @@ void show_interface()
     Transaction* mempool = NULL;
     BlockChain* blockchain = malloc(sizeof(blockchain));
     assert(blockchain != NULL);
+    Miner* miner_1 = create_miner("Cooper");
 
 
     int running = 1;
@@ -54,7 +55,7 @@ void show_interface()
                 break;
 
             case '2':
-                miningProcess(blockchain, &mempool);
+                miningProcess(blockchain, &mempool, miner_1);
                 break;
 
             case '3':
@@ -62,7 +63,7 @@ void show_interface()
                 break;
 
             case '4':
-
+                minersBalance(miner_1);
                 break;
 
             case '5':
@@ -90,6 +91,7 @@ void show_interface()
                 printf("│          Exit          │\n");
                 printf("╰────────────────────────╯\n");
                 free(blockchain);
+                free(miner_1);
 //                printf("Выход в меню выбора");
 //                loadingAnimation(3, 250);
                 running = 0;
