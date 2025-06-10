@@ -12,6 +12,7 @@
 #include "transaction.h"
 #include "blockchain_functions.h"
 #include "getch_unix_without_conio.h"
+#include "auxiliary.h"
 
 void createTransactionInterface(Transaction** mempool);
 void show_mempool(Transaction* mempool);

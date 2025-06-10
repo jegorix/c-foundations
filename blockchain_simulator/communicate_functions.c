@@ -9,6 +9,7 @@ void createTransactionInterface(Transaction** mempool)
     char sender_name[50];
     char receiver_name[50];
     char buffer[50];
+    char* stripped_buffer;
 
   printf("\n╭───────────────────────────────────╮\n");
     printf("│     Transaction Creation Menu     │\n");
@@ -16,25 +17,58 @@ void createTransactionInterface(Transaction** mempool)
 
     printf("\n");
 
-  printf("\n╭───────────────────────────────────╮\n");
-    printf("│        Enter sender name          │\n");
-    printf("╰───────────────────────────────────╯\n");
-    printf("╰─> ");
+    do {
+
+      printf("\n╭───────────────────────────────────╮\n");
+      printf("│        Enter sender name          │\n");
+      printf("╰───────────────────────────────────╯\n");
+      printf("╰─> ");
 
 
-    fgets(buffer, 50, stdin);
-    buffer[strcspn(buffer, "\n")] = 0;
-    strncpy(sender_name, buffer, sizeof(sender_name) - 1);
+      fgets(buffer, 50, stdin);
+      buffer[strcspn(buffer, "\n")] = 0;
+      stripped_buffer = strip(buffer);
+
+      if(strlen(stripped_buffer) == 0)
+      {
+        printf(
+              "\n╭────────────────────────────────────────╮\n"
+                "│      Sender name cannot be empty       │\n"
+                "╰────────────────────────────────────────╯\n\n"
+        );
+      }
 
 
-  printf("\n╭───────────────────────────────────╮\n");
-    printf("│       Enter receiver name         │\n");
-    printf("╰───────────────────────────────────╯\n");
-    printf("╰─> ");
+    }while(strlen(stripped_buffer) == 0);
 
-    fgets(buffer, 50, stdin);
-    buffer[strcspn(buffer, "\n")] = 0;
-    strncpy(receiver_name, buffer, sizeof(sender_name) - 1);
+    strncpy(sender_name, stripped_buffer, sizeof(sender_name) - 1);
+    stripped_buffer = NULL;
+
+
+
+    do {
+      printf("\n╭───────────────────────────────────╮\n");
+      printf("│       Enter receiver name         │\n");
+      printf("╰───────────────────────────────────╯\n");
+      printf("╰─> ");
+
+      fgets(buffer, 50, stdin);
+      buffer[strcspn(buffer, "\n")] = 0;
+      stripped_buffer = strip(buffer);
+
+      if(strlen(stripped_buffer) == 0)
+      {
+        printf(
+              "\n╭────────────────────────────────────────╮\n"
+                "│      Receiver name cannot be empty     │\n"
+                "╰────────────────────────────────────────╯\n\n"
+        );
+      }
+
+    }while(strlen(stripped_buffer) == 0);
+
+    strncpy(receiver_name, stripped_buffer, sizeof(sender_name) - 1);
+
 
 
     printf("\n╭───────────────────────────────────╮\n");
