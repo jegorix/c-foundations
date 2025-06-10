@@ -12,6 +12,11 @@ void show_interface()
     assert(blockchain != NULL);
     Miner* miner_1 = create_miner("Cooper");
 
+    const char* folder = "blockchain/";
+    const char* filename = "autosave.txt";
+    char full_path[512];
+    snprintf(full_path, sizeof(full_path), "%s%s", folder, filename);
+
 
     int running = 1;
     while(running)
@@ -56,6 +61,7 @@ void show_interface()
 
             case '2':
                 miningProcess(blockchain, &mempool, miner_1);
+                saveBlockchain(blockchain, full_path, "a");
                 break;
 
             case '3':
@@ -71,7 +77,7 @@ void show_interface()
                 break;
 
             case '6':
-
+                saveMenu(blockchain, folder, "w");
                 break;
 
             case '7':

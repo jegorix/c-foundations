@@ -27,3 +27,25 @@ Transactions: Max->Lev:500.00;
 Nonce: 7
 Timestamp: 2025-06-10 18:57:13
 
+BLOCKCHAIN DATA. Session date: 2025-06-10 19:29:52
+
+BLOCKCHAIN DATA. Session date: 2025-06-10 19:30:59
+
+Block-0
+Block hash: 0fc3950c0fc3950c0fc3950c0fc3950c0fc3950c0fc3950c0fc3950c0fc3950c
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 2
+Transactions: Kevin->Paul:200.00;Calvin->James:500.00;
+Nonce: 0
+Timestamp: 2025-06-10 19:30:59
+
+BLOCKCHAIN DATA. Session date: 2025-06-10 19:34:00
+
+Block-0
+Block hash: 0f12198e0f12198e0f12198e0f12198e0f12198e0f12198e0f12198e0f12198e
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Kevin->Thomas:500.00;
+Nonce: 3
+Timestamp: 2025-06-10 19:33:59
+

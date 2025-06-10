@@ -40,7 +40,7 @@ void createTransactionInterface(Transaction** mempool)
 
     }while(strlen(stripped_buffer) == 0);
 
-    strncpy(sender_name, stripped_buffer, sizeof(sender_name) - 1);
+    strncpy(sender_name, stripped_buffer, sizeof(stripped_buffer) - 1);
     stripped_buffer = NULL;
 
 
@@ -66,7 +66,7 @@ void createTransactionInterface(Transaction** mempool)
 
     }while(strlen(stripped_buffer) == 0);
 
-    strncpy(receiver_name, stripped_buffer, sizeof(sender_name) - 1);
+    strncpy(receiver_name, stripped_buffer, sizeof(stripped_buffer) - 1);
 
 
 
@@ -267,3 +267,57 @@ printf("\n╔══════════════════════�
 }
 
 
+void saveMenu(BlockChain* blockchain, const char* folder, const char* mode) {
+  char filename[50];
+  char buffer[50];
+  char *stripped_buffer;
+  char full_path[512];
+
+
+  if(blockchain->head == NULL)
+  {
+    printf("\n╭───────────────────────────────────╮\n");
+    printf("│        BlockChain is empty        │\n");
+    printf("╰───────────────────────────────────╯\n");
+    return;
+  }
+
+
+
+  printf("\n╭───────────────────────────────────╮\n");
+  printf("│       Save BlockChain Menu        │\n");
+  printf("╰───────────────────────────────────╯\n");
+
+  printf("\n");
+
+  do {
+    printf("\n╭───────────────────────────────────╮\n");
+    printf("│          Enter file name          │\n");
+    printf("╰───────────────────────────────────╯\n");
+    printf("╰─> ");
+
+
+    fgets(buffer, 50, stdin);
+    buffer[strcspn(buffer, "\n")] = 0;
+    stripped_buffer = strip(buffer);
+
+    if (strlen(stripped_buffer) == 0) {
+      printf(
+              "\n╭────────────────────────────────────────╮\n"
+              "│       File name cannot be empty        │\n"
+              "╰────────────────────────────────────────╯\n\n"
+      );
+    }
+  } while(strlen(stripped_buffer) == 0);
+
+  strncpy(filename, stripped_buffer, sizeof(stripped_buffer)-1);
+
+  snprintf(full_path, sizeof(full_path), "%s%s", folder, filename);
+  saveBlockchain(blockchain, full_path, mode);
+
+printf("\n╭───────────────────────────────────╮\n");
+  printf("│   BLOCKCHAIN SUCCESSFULLY SAVED   │  \n");
+  printf("╰───────────────────────────────────╯\n");
+  printf("\n");
+
+}
