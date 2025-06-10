@@ -30,5 +30,7 @@ int mine_block(Block* block, int difficulty);
 char* make_serialization(Block* block);
 Block* create_block(int index, const char* prev_hash, Transaction* transactions);
 Miner* create_miner(const char* name);
+void saveBlockchain(BlockChain* blockchain, const char* filename, const char* mode);
+char* convert_time(time_t timestamp);
 
 #endif //BLOCKCHAIN_SIMULATOR_BLOCKCHAIN_FUNCTIONS_H

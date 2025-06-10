@@ -203,3 +203,42 @@ Miner* create_miner(const char* name)
     return miner;
 }
 
+
+char* convert_time(time_t timestamp)
+{
+    struct tm *timeinfo = localtime(&timestamp);
+    char* buffer = malloc(80);
+    assert(buffer!=NULL);
+    strftime(buffer, 80, "%Y-%m-%d %H:%M:%S", timeinfo);
+    return buffer;
+
+}
+
+void saveBlockchain(BlockChain* blockchain, const char* filename, const char* mode)
+{
+    FILE* file = fopen(filename, mode);
+    assert(file!=NULL);
+
+    Block* block = blockchain->head;
+    time_t current_time = time(NULL);
+    char* session_time = convert_time(current_time);
+    fprintf(file, "BLOCKCHAIN DATA. Session date: %s\n\n", session_time);
+    free(session_time);
+
+    while(block!=NULL)
+    {
+        char* timestamp = convert_time(block->timestamp);
+        fprintf(file, "Block-%d\n", block->index);
+        fprintf(file, "Block hash: %s\n", block->hash);
+        fprintf(file, "Previous hash: %s\n", block->prev_hash);
+        fprintf(file, "Transaction count: %d\n", block->transaction_count);
+        fprintf(file, "Transactions: %s\n", block->data);
+        fprintf(file, "Nonce: %d\n", block->nonce);
+        fprintf(file, "Timestamp: %s\n\n", timestamp);
+        free(timestamp);
+
+        block = block->next;
+    }
+
+    fclose(file);
+}
