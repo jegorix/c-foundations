@@ -117,6 +117,8 @@ int mine_block(Block* block, int difficulty)
         block->nonce = nonce;
         char* serialized = make_serialization(block);
         simple_hash(serialized, block->nonce, hash_output);
+        strncpy(block->data, hash_output, sizeof(hash_output)-1);
+        block->data[sizeof(block->data)-1] = '\0';
         free(serialized);
         int try = nonce + 1;
 
@@ -174,6 +176,7 @@ Block* create_block(int index, const char* prev_hash, Transaction* transactions)
     block->nonce = 0; // nonce calculate
     block->transaction = transactions;
     block->timestamp = time(NULL);
+    strcpy(block->data, "");
 
 
     Transaction* current = transactions;

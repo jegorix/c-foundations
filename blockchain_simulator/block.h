@@ -13,8 +13,10 @@ typedef struct{
     char hash[65];
     int nonce;
     time_t timestamp;
+    char data[1024];
     Transaction* transaction;
     int transaction_count;
+
 
     struct Block* next;
 }Block;
