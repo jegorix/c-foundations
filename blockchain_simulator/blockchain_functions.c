@@ -117,8 +117,6 @@ int mine_block(Block* block, int difficulty)
         block->nonce = nonce;
         char* serialized = make_serialization(block);
         simple_hash(serialized, block->nonce, hash_output);
-        strncpy(block->data, hash_output, sizeof(hash_output)-1);
-        block->data[sizeof(block->data)-1] = '\0';
         free(serialized);
         int try = nonce + 1;
 
@@ -157,6 +155,8 @@ char* make_serialization(Block* block)
     assert(block_data != NULL);
     char output[1024];
     transaction_to_string(block->transaction, output, sizeof(output));
+    strncpy(block->data, output, sizeof(output)-1);
+    block->data[sizeof(block->data)-1] = '\0';
     snprintf(block_data, 1024, "%d%ld%s%s", block->index, block->timestamp, block->prev_hash, output);
 
     return block_data;
