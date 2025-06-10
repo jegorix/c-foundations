@@ -21,3 +21,8 @@ void loadingAnimation(int dots, int delay_ms)
     printf("\n");
 }
 
+void simple_pause(int delay_ms)
+{
+        fflush(stdout);
+        usleep(delay_ms * 1000);
+}

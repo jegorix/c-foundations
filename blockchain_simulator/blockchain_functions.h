@@ -23,7 +23,7 @@ char* make_serialization(Block* block);
 void transaction_to_string(const Transaction* head, char* output, int limit_size);
 int isValidHash(const char* hash, int difficulty);
 void simple_hash(const char* input, int nonce, char* output);
-int mine_block(Block* block);
+int mine_block(Block* block, int difficulty);
 char* make_serialization(Block* block);
 Block* create_block(int index, const char* prev_hash, Transaction* transactions);
 

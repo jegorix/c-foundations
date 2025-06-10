@@ -9,4 +9,5 @@
 #include <unistd.h>
 void clearScreen();
 void loadingAnimation(int dots, int delay_ms);
+void simple_pause(int delay_ms);
 #endif //UPOZN_ANIMATIONS_H

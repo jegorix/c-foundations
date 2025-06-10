@@ -100,7 +100,7 @@ void simple_hash(const char* input, int nonce, char* output)
 }
 
 
-int mine_block(Block* block)
+int mine_block(Block* block, int difficulty)
 {
     char hash_output[65];
     unsigned int nonce = 0;
@@ -113,6 +113,7 @@ int mine_block(Block* block)
 
     do
     {
+        simple_pause(300);
         block->nonce = nonce;
         char* serialized = make_serialization(block);
         simple_hash(serialized, block->nonce, hash_output);
@@ -120,20 +121,20 @@ int mine_block(Block* block)
         int try = nonce + 1;
 
       printf("\n╭────────────────────────────────────────────────────────────────────────╮\n");
-        printf("│                                 Try-%d                                 │\n", try);
-        printf("│ Nonce = %d                                                             │\n", nonce);
+        printf("│                                 Try-%03d                                │\n", try);
+        printf("│ Nonce = %03d                                                            │\n", nonce);
         printf("│ HASH: %s │\n", hash_output);
         printf("╰────────────────────────────────────────────────────────────────────────╯\n");
 
 
-        if(isValidHash(hash_output, 1)) // FIX DIFFICULTY
+        if(isValidHash(hash_output, difficulty))
         {
             strcpy(block->hash, hash_output);
             block->nonce = nonce;
 
           printf("\n╭────────────────────────────────────────────────────────────────────────╮\n");
             printf("│                              BLOCK MINED                               │\n");
-            printf("│ Nonce = %d                                                             │\n", nonce);
+            printf("│ Nonce = %03d                                                            │\n", nonce);
             printf("│ HASH: %s │\n", hash_output);
             printf("╰────────────────────────────────────────────────────────────────────────╯\n");
 
