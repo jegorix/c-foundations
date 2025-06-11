@@ -242,3 +242,60 @@ void saveBlockchain(BlockChain* blockchain, const char* filename, const char* mo
 
     fclose(file);
 }
+
+
+
+int isBlockValid(Block* block, Block* prev_block)
+{
+  printf("\n╭───────────────────────────────────╮\n");
+    printf("│            BLOCK-%02d               │\n", block->index);
+    printf("╰───────────────────────────────────╯\n");
+
+
+  printf("\n╭───────────────────────────────────╮\n");
+    printf("│           Verification...         │\n");
+    printf("╰───────────────────────────────────╯\n");
+    simple_pause(300);
+
+    if(block->index == 0)
+    {
+    if(strncmp(block->prev_hash, "0000000000000000000000000000000000000000000000000000000000000000", 64) != 0) return 0;
+        simple_pause(200);
+      printf("\n╭───────────────────────────────────╮\n");
+        printf("│      PREVIOUS HASH IS VALID       │\n");
+        printf("╰───────────────────────────────────╯\n");
+
+    }
+
+    else {
+        if (prev_block == NULL) return 0;
+
+        if (block->index != prev_block->index + 1) return 0;
+        simple_pause(200);
+        printf("\n╭───────────────────────────────────╮\n");
+        printf("│           INDEX IS VALID          │\n");
+        printf("╰───────────────────────────────────╯\n");
+
+        if (strcmp(block->prev_hash, prev_block->hash) != 0) return 0;
+        simple_pause(200);
+        printf("\n╭───────────────────────────────────╮\n");
+        printf("│      PREVIOUS HASH IS VALID       │\n");
+        printf("╰───────────────────────────────────╯\n");
+
+    }
+
+    if(strncmp(block->hash, "0", 1) != 0) return 0;
+    simple_pause(200);
+    printf("\n╭───────────────────────────────────╮\n");
+    printf("│           HASH IS VALID           │\n");
+    printf("╰───────────────────────────────────╯\n");
+
+    if(strlen(block->data) == 0) return 0;
+    simple_pause(200);
+    printf("\n╭───────────────────────────────────╮\n");
+    printf("│           DATA IS VALID           │\n");
+    printf("╰───────────────────────────────────╯\n");
+
+
+    return 1;
+}

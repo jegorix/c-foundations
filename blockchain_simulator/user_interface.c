@@ -8,10 +8,16 @@
 void show_interface()
 {
     Transaction* mempool = NULL;
-    BlockChain* blockchain = malloc(sizeof(blockchain));
-    assert(blockchain != NULL);
+
+    BlockChain* blockchain_main = malloc(sizeof(BlockChain));
+    assert(blockchain_main != NULL);
+
+    BlockChain* blockchain_temp = malloc(sizeof(BlockChain));
+    assert(blockchain_temp != NULL);
+
     Miner* miner_1 = create_miner("Cooper");
 
+    int first_size = 0;
     const char* folder = "blockchain/";
     const char* filename = "autosave.txt";
     char full_path[512];
@@ -60,12 +66,14 @@ void show_interface()
                 break;
 
             case '2':
-                miningProcess(blockchain, &mempool, miner_1);
-                saveBlockchain(blockchain, full_path, "a");
+                miningProcess(blockchain_main, blockchain_temp, &mempool, miner_1);
+
                 break;
 
             case '3':
-
+                first_size = blockchain_main->size;
+                nodeMode(blockchain_main, blockchain_temp);
+                if (blockchain_main->size > first_size) saveBlockchain(blockchain_main, full_path, "a");
                 break;
 
             case '4':
@@ -73,11 +81,11 @@ void show_interface()
                 break;
 
             case '5':
-                blockchainVisualisation(blockchain);
+                blockchainVisualisation(blockchain_main);
                 break;
 
             case '6':
-                saveMenu(blockchain, folder, "w");
+                saveMenu(blockchain_main, folder, "w");
                 break;
 
             case '7':
@@ -96,7 +104,8 @@ void show_interface()
                 printf("\n╭────────────────────────╮\n");
                 printf("│          Exit          │\n");
                 printf("╰────────────────────────╯\n");
-                free(blockchain);
+                free(blockchain_main);
+                free(blockchain_temp);
                 free(miner_1);
 //                printf("Выход в меню выбора");
 //                loadingAnimation(3, 250);

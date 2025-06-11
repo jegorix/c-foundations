@@ -128,7 +128,7 @@ void show_mempool(Transaction* mempool)
 }
 
 
-void miningProcess(BlockChain* blockchain, Transaction** mempool, Miner* miner)
+void miningProcess(BlockChain* blockchain_main, BlockChain* blockchain_temp, Transaction** mempool, Miner* miner)
 {
   assert(miner!=NULL);
 
@@ -148,43 +148,46 @@ printf("\n╭──────────────────────�
 
   fgetch();
 
-  Block* last_block = blockchain->head;
+  Block* last_block = blockchain_main->head;
   int difficulty = 1;
+  const char* prev_hash;
+  int index;
+
+
 
   if(last_block == NULL)
   {
-    blockchain->size = 0;
-    const char* GENESIS_PREV_HASH = "0000000000000000000000000000000000000000000000000000000000000000";
-    Block* genesis = create_block(blockchain->size, GENESIS_PREV_HASH, *mempool);
-
-    if(mine_block(genesis, difficulty))
-    {
-      blockchain->head = genesis;
-      blockchain->size++;
-      miner->blocks_mined++;
-      printf("\n╭───────────────────────────────────╮\n");
-      printf("│           GENESIS BLOCK           │\n");
-      printf("│         SUCCESSFULLY ADDED        │\n");
-      printf("│           TO BLOCKCHAIN           │\n");
-      printf("╰───────────────────────────────────╯\n");
-    }
+    index = 0;
+    prev_hash = "0000000000000000000000000000000000000000000000000000000000000000";
   }
   else
   {
-  while(last_block->next != NULL) last_block = last_block->next;
+    while(last_block->next != NULL)last_block = last_block->next;
+    prev_hash = last_block->hash;
+    index = last_block->index + 1;
+  }
 
-  Block* new_block = create_block(blockchain->size, last_block->hash, *mempool);
+  Block* new_block = create_block(index, prev_hash, *mempool);
+
     if(mine_block(new_block, difficulty))
+    {
+      blockchain_temp->head = new_block;
+      blockchain_temp->size++;
+      miner->blocks_mined++;
+
+      printf("\n╭───────────────────────────────────╮\n");
+      if (index == 0)
       {
-        last_block->next = new_block;
-        blockchain->size++;
-        miner->blocks_mined++;
-        printf("\n╭───────────────────────────────────╮\n");
-          printf("│              BLOCK-%d              │\n", blockchain->size);
-          printf("│         SUCCESSFULLY MINED        │\n");
-          printf("╰───────────────────────────────────╯\n");
+        printf("│        GENESIS BLOCK MINED        │\n");
       }
+      else
+      {
+      printf("│        BLOCK-%d MINED SUCCESS      │\n", index);
+      }
+      printf("╰───────────────────────────────────╯\n");
+
     }
+
 
   Transaction* head = *mempool;
   while(head != NULL)
@@ -321,3 +324,112 @@ printf("\n╭──────────────────────�
   printf("\n");
 
 }
+
+
+
+void nodeMode(BlockChain* blockchain_main, BlockChain* blockchain_temp) {
+  printf("\n╭───────────────────────────────────╮\n");
+  printf("│             NODE MODE             │\n");
+  printf("╰───────────────────────────────────╯\n");
+  printf("\n");
+
+
+
+  if (blockchain_temp->head == NULL) {
+    printf(
+            "\n╭────────────────────────────────────────╮\n"
+            "│    List of potential blocks is empty   │\n"
+            "╰────────────────────────────────────────╯\n\n"
+    );
+    return;
+  }
+
+
+
+  blockchainVisualisation(blockchain_temp);
+  printf("\n╭───────────────────────────────────╮\n");
+  printf("│           PRESS 'ENTER'           │\n");
+  printf("│       TO START NODE PROCESS       │\n");
+  printf("╰───────────────────────────────────╯\n");
+  fgetch();
+
+
+
+  Block* current_block = blockchain_temp->head;
+  Block* next_block;
+
+
+if(blockchain_main->head == NULL)
+{
+  while(current_block != NULL)
+  {
+    next_block = current_block->next;
+
+    if(isBlockValid(current_block, NULL))
+    {
+      blockchain_main->head = current_block;
+      blockchain_main->head->next = NULL;
+      blockchain_main->size = 1;
+      blockchain_temp->size = 0;
+      printf("\n╭───────────────────────────────────╮\n");
+      printf("│         GENESIS BLOCK ADDED       │\n");
+      printf("╰───────────────────────────────────╯\n");
+      break;
+    }
+
+    else
+    {
+      free(current_block);
+      blockchain_temp->size = 0;
+    printf("\n╭───────────────────────────────────╮\n");
+      printf("│        BLOCK IS INVALID           │\n");
+      printf("╰───────────────────────────────────╯\n");
+    }
+
+    current_block = next_block;
+  }
+
+  blockchain_temp->head = NULL;
+  return;
+}
+
+
+
+  Block* prev_block = blockchain_main->head;
+  while(prev_block->next != NULL) prev_block = prev_block->next;
+  while(current_block != NULL)
+  {
+      next_block = current_block->next;
+
+    if (isBlockValid(current_block, prev_block))
+    {
+      prev_block->next = current_block;
+      prev_block = current_block;
+      current_block->next = NULL;
+      blockchain_main->size++;
+      blockchain_temp->size--;
+
+      printf("\n╭───────────────────────────────────╮\n");
+      printf("│           BLOCK IS VALID          │\n");
+      printf("╰───────────────────────────────────╯\n");
+
+
+      }
+
+    else
+    {
+      free(current_block);
+      blockchain_temp->size--;
+      printf("\n╭───────────────────────────────────╮\n");
+      printf("│          BLOCK IS INVALID         │\n");
+      printf("╰───────────────────────────────────╯\n");
+    }
+
+      current_block = next_block;
+  }
+
+  blockchain_temp->head = NULL;
+  return;
+}
+
+
