@@ -16,9 +16,9 @@
 
 void createTransactionInterface(Transaction** mempool);
 void show_mempool(Transaction* mempool);
-void miningProcess(BlockChain* blockchain_main, BlockChain* blockchain_temp, Transaction** mempool, Miner* miner);
+void miningProcess(BlockChain* blockchain_main, BlockChain* blockchain_temp, Transaction** mempool);
 void blockchainVisualisation(BlockChain* blockchain);
 void minersBalance(Miner* miner);
 void saveMenu(BlockChain* blockchain, const char* folder, const char* mode);
-void nodeMode(BlockChain* blockchain_main, BlockChain* blockchain_temp);
+void nodeMode(BlockChain* blockchain_main, BlockChain* blockchain_temp, Miner* miner);
 #endif //BLOCKCHAIN_SIMULATOR_COMMUNICATE_FUNCTIONS_H

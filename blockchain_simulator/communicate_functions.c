@@ -128,9 +128,8 @@ void show_mempool(Transaction* mempool)
 }
 
 
-void miningProcess(BlockChain* blockchain_main, BlockChain* blockchain_temp, Transaction** mempool, Miner* miner)
+void miningProcess(BlockChain* blockchain_main, BlockChain* blockchain_temp, Transaction** mempool)
 {
-  assert(miner!=NULL);
 
   if(*mempool == NULL)
   {
@@ -173,7 +172,6 @@ printf("\n╭──────────────────────�
     {
       blockchain_temp->head = new_block;
       blockchain_temp->size++;
-      miner->blocks_mined++;
 
       printf("\n╭───────────────────────────────────╮\n");
       if (index == 0)
@@ -189,14 +187,13 @@ printf("\n╭──────────────────────�
     }
 
 
-  Transaction* head = *mempool;
-  while(head != NULL)
-  {
-    miner->balance += head->fee;
-    Transaction* temp = head;
-    head = head->next;
-    free(temp);
-  }
+//  Transaction* head = *mempool;
+//  while(head != NULL)
+//  {
+//    Transaction* temp = head;
+//    head = head->next;
+//    free(temp);
+//  }
   *mempool = NULL;
 
 printf("\n╭───────────────────────────────────╮\n");
@@ -327,7 +324,12 @@ printf("\n╭──────────────────────�
 
 
 
-void nodeMode(BlockChain* blockchain_main, BlockChain* blockchain_temp) {
+
+void nodeMode(BlockChain* blockchain_main, BlockChain* blockchain_temp, Miner* miner) {
+
+
+  assert(miner != NULL);
+
   printf("\n╭───────────────────────────────────╮\n");
   printf("│             NODE MODE             │\n");
   printf("╰───────────────────────────────────╯\n");
@@ -371,6 +373,11 @@ if(blockchain_main->head == NULL)
       blockchain_main->head->next = NULL;
       blockchain_main->size = 1;
       blockchain_temp->size = 0;
+
+
+      miner->blocks_mined++;
+      miner->balance += get_total_fee_from_block(current_block);
+
       printf("\n╭───────────────────────────────────╮\n");
       printf("│         GENESIS BLOCK ADDED       │\n");
       printf("╰───────────────────────────────────╯\n");
@@ -409,10 +416,12 @@ if(blockchain_main->head == NULL)
       blockchain_main->size++;
       blockchain_temp->size--;
 
+      miner->blocks_mined++;
+      miner->balance += get_total_fee_from_block(current_block);
+
       printf("\n╭───────────────────────────────────╮\n");
       printf("│           BLOCK IS VALID          │\n");
       printf("╰───────────────────────────────────╯\n");
-
 
       }
 

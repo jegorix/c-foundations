@@ -14,7 +14,7 @@ Transaction* create_transaction(const char* sender, const char* receiver, float 
     tx->amount = amount;
     tx->next = NULL;
     tx->id = uniq_id;
-    tx->fee = 1 + (tx->amount * 0.005);
+    tx->fee = 1 + ((float)tx->amount * 0.005);
     return tx;
 }
 
@@ -298,4 +298,41 @@ int isBlockValid(Block* block, Block* prev_block)
 
 
     return 1;
+}
+
+
+float get_total_fee_from_block(Block* block)
+{
+    Transaction* tx = block->transaction;
+    float total_fee = 0;
+    while(tx != NULL)
+    {
+        total_fee += tx->fee;
+        tx = tx->next;
+    }
+    return total_fee;
+}
+
+
+void freeBlockchain(BlockChain* blockchain)
+{
+    Block* current = blockchain->head;
+
+    while(current != NULL)
+    {
+        Block* temp = current;
+        current = current->next;
+        Transaction* tx = temp->transaction;
+
+        while(tx != NULL)
+        {
+            Transaction* tx_temp = tx;
+            tx = tx->next;
+            free(tx);
+        }
+        free(temp);
+    }
+
+    blockchain->size = 0;
+    blockchain->head = NULL;
 }

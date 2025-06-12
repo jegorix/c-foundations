@@ -29,7 +29,7 @@ void show_interface()
     {
         clearScreen();
         printf(
-                "\n╔═════════════════════════════════════════════════╗\n"
+              "\n╔═════════════════════════════════════════════════╗\n"
                 "║                Choose activity                  ║\n"
                 "╠═════════════════════════════════════════════════╣\n"
                 "║ 0 - Create Transaction                          ║\n"
@@ -66,13 +66,13 @@ void show_interface()
                 break;
 
             case '2':
-                miningProcess(blockchain_main, blockchain_temp, &mempool, miner_1);
+                miningProcess(blockchain_main, blockchain_temp, &mempool);
 
                 break;
 
             case '3':
                 first_size = blockchain_main->size;
-                nodeMode(blockchain_main, blockchain_temp);
+                nodeMode(blockchain_main, blockchain_temp, miner_1);
                 if (blockchain_main->size > first_size) saveBlockchain(blockchain_main, full_path, "a");
                 break;
 
@@ -104,6 +104,8 @@ void show_interface()
                 printf("\n╭────────────────────────╮\n");
                 printf("│          Exit          │\n");
                 printf("╰────────────────────────╯\n");
+                freeBlockchain(blockchain_main);
+                freeBlockchain(blockchain_temp);
                 free(blockchain_main);
                 free(blockchain_temp);
                 free(miner_1);

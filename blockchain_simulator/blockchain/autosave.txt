@@ -141,3 +141,197 @@ Transactions: Fred->Maz:400.00;
 Nonce: 7
 Timestamp: 2025-06-11 23:42:14
 
+BLOCKCHAIN DATA. Session date: 2025-06-12 00:22:28
+
+Block-0
+Block hash: 055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Den->Sam:200.00;
+Nonce: 13
+Timestamp: 2025-06-12 00:22:05
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 00:24:18
+
+Block-0
+Block hash: 055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Den->Sam:200.00;
+Nonce: 13
+Timestamp: 2025-06-12 00:22:05
+
+Block-1
+Block hash: 0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a
+Previous hash: 055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4
+Transaction count: 1
+Transactions: Frank->Van:300.00;
+Nonce: 21
+Timestamp: 2025-06-12 00:23:42
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 00:25:31
+
+Block-0
+Block hash: 055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Den->Sam:200.00;
+Nonce: 13
+Timestamp: 2025-06-12 00:22:05
+
+Block-1
+Block hash: 0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a
+Previous hash: 055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4
+Transaction count: 1
+Transactions: Frank->Van:300.00;
+Nonce: 21
+Timestamp: 2025-06-12 00:23:42
+
+Block-2
+Block hash: 0791fb910791fb910791fb910791fb910791fb910791fb910791fb910791fb91
+Previous hash: 0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a
+Transaction count: 1
+Transactions: Ronald->Kevin:300.00;
+Nonce: 2
+Timestamp: 2025-06-12 00:25:13
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 00:27:28
+
+Block-0
+Block hash: 055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Den->Sam:200.00;
+Nonce: 13
+Timestamp: 2025-06-12 00:22:05
+
+Block-1
+Block hash: 0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a
+Previous hash: 055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4055de4c4
+Transaction count: 1
+Transactions: Frank->Van:300.00;
+Nonce: 21
+Timestamp: 2025-06-12 00:23:42
+
+Block-2
+Block hash: 0791fb910791fb910791fb910791fb910791fb910791fb910791fb910791fb91
+Previous hash: 0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a0e92a06a
+Transaction count: 1
+Transactions: Ronald->Kevin:300.00;
+Nonce: 2
+Timestamp: 2025-06-12 00:25:13
+
+Block-3
+Block hash: 02676de602676de602676de602676de602676de602676de602676de602676de6
+Previous hash: 0791fb910791fb910791fb910791fb910791fb910791fb910791fb910791fb91
+Transaction count: 1
+Transactions: Fin->Tom:900.00;
+Nonce: 46
+Timestamp: 2025-06-12 00:26:28
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 16:17:54
+
+Block-0
+Block hash: 0c1652400c1652400c1652400c1652400c1652400c1652400c1652400c165240
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: David->Stan:300.00;
+Nonce: 3
+Timestamp: 2025-06-12 16:17:33
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 16:20:52
+
+Block-0
+Block hash: 0c1652400c1652400c1652400c1652400c1652400c1652400c1652400c165240
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: David->Stan:300.00;
+Nonce: 3
+Timestamp: 2025-06-12 16:17:33
+
+Block-1
+Block hash: 01cc8e8001cc8e8001cc8e8001cc8e8001cc8e8001cc8e8001cc8e8001cc8e80
+Previous hash: 0c1652400c1652400c1652400c1652400c1652400c1652400c1652400c165240
+Transaction count: 1
+Transactions: Rayn->Rick:300.00;
+Nonce: 74
+Timestamp: 2025-06-12 16:20:09
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 16:25:08
+
+Block-0
+Block hash: 03e5f46703e5f46703e5f46703e5f46703e5f46703e5f46703e5f46703e5f467
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Henry->Harry:400.00;
+Nonce: 5
+Timestamp: 2025-06-12 16:24:53
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 16:25:42
+
+Block-0
+Block hash: 03e5f46703e5f46703e5f46703e5f46703e5f46703e5f46703e5f46703e5f467
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Henry->Harry:400.00;
+Nonce: 5
+Timestamp: 2025-06-12 16:24:53
+
+Block-1
+Block hash: 034b0c78034b0c78034b0c78034b0c78034b0c78034b0c78034b0c78034b0c78
+Previous hash: 03e5f46703e5f46703e5f46703e5f46703e5f46703e5f46703e5f46703e5f467
+Transaction count: 1
+Transactions: vsdfvd->vvsdf:300.00;
+Nonce: 8
+Timestamp: 2025-06-12 16:25:30
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 16:34:45
+
+Block-0
+Block hash: 096b4f76096b4f76096b4f76096b4f76096b4f76096b4f76096b4f76096b4f76
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Ben->Sam:200.00;
+Nonce: 18
+Timestamp: 2025-06-12 16:34:27
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 16:46:51
+
+Block-0
+Block hash: 09f6ea9e09f6ea9e09f6ea9e09f6ea9e09f6ea9e09f6ea9e09f6ea9e09f6ea9e
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Fres->Dos:300.00;
+Nonce: 17
+Timestamp: 2025-06-12 16:46:35
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 16:50:19
+
+Block-0
+Block hash: 060573a0060573a0060573a0060573a0060573a0060573a0060573a0060573a0
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: т тт->тол�L:800.00;
+Nonce: 7
+Timestamp: 2025-06-12 16:50:04
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 16:58:33
+
+Block-0
+Block hash: 0f68fd370f68fd370f68fd370f68fd370f68fd370f68fd370f68fd370f68fd37
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Ren->Dan:4000.00;
+Nonce: 13
+Timestamp: 2025-06-12 16:58:13
+
+BLOCKCHAIN DATA. Session date: 2025-06-12 17:07:58
+
+Block-0
+Block hash: 0cafd8f70cafd8f70cafd8f70cafd8f70cafd8f70cafd8f70cafd8f70cafd8f7
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Dan->Ben:200.00;
+Nonce: 36
+Timestamp: 2025-06-12 17:07:35
+

@@ -33,5 +33,7 @@ Miner* create_miner(const char* name);
 void saveBlockchain(BlockChain* blockchain, const char* filename, const char* mode);
 char* convert_time(time_t timestamp);
 int isBlockValid(Block* block, Block* previous_block);
+float get_total_fee_from_block(Block* block);
+void freeBlockchain(BlockChain* blockchain);
 
 #endif //BLOCKCHAIN_SIMULATOR_BLOCKCHAIN_FUNCTIONS_H
