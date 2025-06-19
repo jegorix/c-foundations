@@ -21,4 +21,5 @@ void blockchainVisualisation(BlockChain* blockchain);
 void minersBalance(Miner* miner);
 void saveMenu(BlockChain* blockchain, const char* folder, const char* mode);
 void nodeMode(BlockChain* blockchain_main, BlockChain* blockchain_temp, Miner* miner);
+void blockchain_history(const char* path);
 #endif //BLOCKCHAIN_SIMULATOR_COMMUNICATE_FUNCTIONS_H

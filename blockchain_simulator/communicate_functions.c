@@ -442,3 +442,35 @@ if(blockchain_main->head == NULL)
 }
 
 
+void blockchain_history(const char* file_path)
+{
+ FILE* file = fopen(file_path, "r");
+
+  if (!file)
+  {
+    printf(
+          "\n╭────────────────────────────────────────╮\n"
+            "│           Error opening file.          │\n"
+            "╰────────────────────────────────────────╯\n"
+            "\n"
+    );
+    return;
+  }
+
+  char buffer[256];
+  while(fgets(buffer, sizeof(256), file) != NULL)
+  {
+    printf("%s", buffer);
+  }
+  fclose(file);
+
+
+printf("\n\n╭───────────────────────────────────╮\n");
+  printf("│        BLOCKCHAIN HISTORY         │\n");
+  printf("│  IN REVERSE CHRONOLOGICAL ORDER   │\n");
+  printf("╰───────────────────────────────────╯\n\n");
+
+
+}
+
+

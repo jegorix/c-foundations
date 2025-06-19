@@ -335,3 +335,33 @@ Transactions: Dan->Ben:200.00;
 Nonce: 36
 Timestamp: 2025-06-12 17:07:35
 
+BLOCKCHAIN DATA. Session date: 2025-06-16 23:11:41
+
+Block-0
+Block hash: 0eccd0d80eccd0d80eccd0d80eccd0d80eccd0d80eccd0d80eccd0d80eccd0d8
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Fred->Ben:500.00;
+Nonce: 48
+Timestamp: 2025-06-16 23:11:20
+
+BLOCKCHAIN DATA. Session date: 2025-06-16 23:13:56
+
+Block-0
+Block hash: 04eea4f804eea4f804eea4f804eea4f804eea4f804eea4f804eea4f804eea4f8
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Ben->Fred:3444.00;
+Nonce: 2
+Timestamp: 2025-06-16 23:13:44
+
+BLOCKCHAIN DATA. Session date: 2025-06-19 21:20:16
+
+Block-0
+Block hash: 0b05adbe0b05adbe0b05adbe0b05adbe0b05adbe0b05adbe0b05adbe0b05adbe
+Previous hash: 0000000000000000000000000000000000000000000000000000000000000000
+Transaction count: 1
+Transactions: Frodo->Sam:200.00;
+Nonce: 11
+Timestamp: 2025-06-19 21:20:01
+
